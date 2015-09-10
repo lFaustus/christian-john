@@ -63,11 +63,11 @@ if(isset($_POST['login']))
    
 
 
-	<div class="sample shadow-z-2" style="background-color:white;padding:50px;margin-left:400px; margin-right:400px; margin-top:100px;">
+	<div class="sample shadow-z-2" style="background-color:white;padding:50px;margin-left:400px; margin-right:400px; margin-top:50px;">
 <form method="POST">
 
 <center>
- <i class="fa fa-user fa-5x"> </i>
+ <i class="mdi-action-account-circle mdi-5x"> </i>
 </center>
 		<center> <h2> Admin Login </h3></center>
  <div class="form-group">
