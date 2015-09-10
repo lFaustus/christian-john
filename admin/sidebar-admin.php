@@ -100,10 +100,10 @@
                         <a style = "color:#D3D3D3; font-size: 15px;" href="javascript:;" data-toggle="collapse" data-target="#demo2"><i style="color:#eee;" class = "glyphicon glyphicon-usd"></i> Plans and Subscription <i style = "font-size:12px" class="glyphicon glyphicon-chevron-down"></i></a>
                         <ul id="demo2" class="collapse">
                             <li>
-                                <a title = "Personal Process" style = "color:#B0C4DE" href="addplan.php"><i class = "fa fa-fw fa-user"></i>Manage Plan</a>
+                                <a title = "Personal Process" style = "color:#B0C4DE" href="listplan.php"><i class = "mdi-action-list"></i> Plan List</a>
                             </li>
                             <li>
-                                <a title = "Agency Process"style = "color:#B0C4DE" href="planreports.php"><i class = "glyphicon glyphicon-list-alt"></i> Reports</a>
+                                <a title = "Agency Process"style = "color:#B0C4DE" href="planreports.php"><i class = "mdi-action-receipt"></i> Reports</a>
                             </li>
                             
                               
