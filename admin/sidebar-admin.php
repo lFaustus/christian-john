@@ -100,7 +100,7 @@
                         <a style = "color:#D3D3D3; font-size: 15px;" href="javascript:;" data-toggle="collapse" data-target="#demo2"><i style="color:#eee;" class = "glyphicon glyphicon-usd"></i> Plans and Subscription <i style = "font-size:12px" class="glyphicon glyphicon-chevron-down"></i></a>
                         <ul id="demo2" class="collapse">
                             <li>
-                                <a title = "Personal Process" style = "color:#B0C4DE" href="listplan.php"><i class = "mdi-action-list"></i> Plan List</a>
+                                <a title = "Personal Process" style = "color:#B0C4DE" href="listplan.php"><i class = "mdi-action-view-list"></i> Plan List</a>
                             </li>
                             <li>
                                 <a title = "Agency Process"style = "color:#B0C4DE" href="planreports.php"><i class = "mdi-action-receipt"></i> Reports</a>
@@ -139,11 +139,16 @@
                        <div style = "margin-left:20px;height:1px;width:180px;background:#333"></div>
                     </li>
 
+                        <li>
+                            <a style="margin-left: 3px;" class="btn btn-danger mdi-action-exit-to-app mdi-1x" href="logoutadmin.php" ></a>
+                        </li>
                      <li>
-                     <a title = "Personal Process" style = "color:#eee ; font-size: 15px;" href="logoutadmin.php"><i class ="glyphicon glyphicon-off"></i>&nbsp;   LOGOUT</a>
+                   <!--   <a title = "Personal Process" style = "color:#eee ; font-size: 15px;" ><i ></i>&nbsp;   LOGOUT</a> -->
                  </li>
 
 			    </ul>
+
+
 
 
 

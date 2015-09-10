@@ -1,18 +1,18 @@
 <?php
 require 'function.php';
-$message="";
 $login=$_SESSION['islogin'];
-if(!isset($_SESSION['islogin']))
+$message="";
+if($login)
 {
-    header('location:index.php');
-    exit;
-}
 	$id=$_SESSION['id'];
 	$info=admin($id);
-if(isset($_POST['add']))
+	$idno = trim($_GET['id']);
+	$plan = selectplan($idno);
+
+
+if(isset($_POST['update']))
 {
-	$p=plan($info);
-	if(trim($_POST['desc']) == false)
+		if(trim($_POST['desc']) == false)
 	{
 		$message="Input Plan Description";
 	}
@@ -20,18 +20,20 @@ if(isset($_POST['add']))
 	{
 		$message="Input Rate";
 	}
-	else if($p)
-	{
-		$message="Plan Description is already exist";
-	}
 	else
 	{
-	$message=addplan($_POST);
+		$_POST['idno'] = $idno;
+	updateplan($_POST);
 	header('location:listplan.php');
+	exit();
 	}
 }
-
-
+}
+else
+{
+	header('location:../intro.php');
+	exit();
+}
 
 
 
@@ -249,46 +251,31 @@ if(isset($_POST['add']))
             <div class="container-fluid">
 <form method="POST">
 <table>
+<?php if($plan) {?>
 <tr>
-<td><label for="desc">Plan Description <span>*</span></label></td>
-<td><input type="text" name="desc" id="desc" value="<?php if(isset($_POST['desc'])){ echo htmlentities($_POST['desc']);}?>" required /></td>
+<td><label for="desc">Plan Description</label></td>
+<td><input type="text" name="desc" id="desc" value="<?php if(isset($_POST['desc'])){ echo htmlentities($_POST['desc']);}else{echo htmlentities($plan['plandesc']);}?>"/></td>
 </tr>
 <tr>
-<td><label for="rate">Rate <span>*</span></label></td>
-<td><input type="number" name="rate" id="rate" value="<?php if(isset($_POST['rate'])){ echo htmlentities($_POST['rate']);}?>" required /></td>
+<td><label for="rate">Rate</label></td>
+<td><input type="number" name="rate" id="rate" value="<?php if(isset($_POST['rate'])){ echo htmlentities($_POST['rate']);}else {echo htmlentities($plan['rate']);}?>" /></td>
 </tr>
 <tr>
-<td><label>User Type <span>*</span></label></td>
-
-<div class="sample">
-  <select class="form-control" placeholder="Your favorite pastry">
-    <option value="Apple fritter">Apple fritter</option>
-    <option value="Croissant">Croissant</option>
-    <option value="Donut">Donut</option>
-    <option value="Financier">Financier</option>
-    <option value="Jello">Jello</option>
-    <option value="Madeleine">Madeleine</option>
-    <option value="Pound cake">Pound cake</option>
-    <option value="Pretzel">Pretzel</option>
-    <option value="Sfogliatelle">Sfogliatelle</option>
-  </select>
-
-  
-<td><select class="dropdown-menu" role="menu" name="usertype">
-<option value="Agency">Agency</option>
-<option value="Enduser">EndUser</option>
+<td><label>User Type</label></td>
+<td><select name="usertype">
+<option value="Agency" <?php if($plan['usertype'] == "Agency"){echo "SELECTED";}?> >Agency</option>
+<option value="Enduser" <?php if($plan['usertype'] == "Enduser"){echo "SELECTED";}?> >EndUser</option>
 </select>
 </td>
 </tr>
 <tr>
-<td>&nbsp;</td>
-<td><input type="submit" name="add" value="ADD" /></td>
+<td>$nbsp;</td>
+<td><input type="submit" name="update" value="UPDATE" /></td>
 </tr>
+<?php }?>
 </table>
 </form>
-<div>
-<?php echo $message; ?>
-</div>
+<div><?php echo $message;?></div>
 </div>
 			
             <!-- /.container-fluid -->

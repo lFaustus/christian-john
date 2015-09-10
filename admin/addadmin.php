@@ -163,7 +163,7 @@ $ag=activeagency();
         </div>
 
 
-</table>
+
 </form>
 
 </div>

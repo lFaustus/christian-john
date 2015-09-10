@@ -10,18 +10,35 @@ if(isset($_POST['search']))
 {
     $plan = searchplan($_POST);
 }
+
 }
-else
+if(isset($_POST['add']))
 {
-    header('location:lading.php');
-    exit;
+  $p=plan($info);
+  if(trim($_POST['desc']) == false)
+  {
+    $message="Input Plan Description";
+  }
+  else if(trim($_POST['rate']) == false)
+  {
+    $message="Input Rate";
+  }
+  else if($p)
+  {
+    $message="Plan Description is already exist";
+  }
+  else
+  {
+  $message=addplan($_POST);
+  header('location:listplan.php');
+  }
 }
-
-
     $noti = notify_adminToagency();
     $noti1 = notify_NYS();
 
 ?>
+
+
 
 
 
@@ -74,7 +91,7 @@ else
     
 
             <div style="margin:30px;">
-
+<button class="btn btn-info" data-toggle="modal" data-target="#complete-dialog"> Add Plan</button>
             <?php if($plan){?>
              <div class = "table-responsive">
                   <table class="table table-striped table-hover ">
@@ -141,6 +158,9 @@ $message = "No Unsubscribe Agencies";
 
 
 
+
+
+
 <!-- DataTables CSS -->
 
 <!-- jQuery -->
@@ -163,6 +183,88 @@ $(document).ready( function () {
 </script>
 
 
-</body>
 
+
+
+
+<div id="complete-dialog" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Add Plan</h4>
+      </div>
+      <div class="modal-body">
+        
+
+        <form method="POST">
+        <div class="col-xs-13">
+            <center>
+           <!--  <div style="background-color: #fff; color:red; padding: 50px; text-align:center; font-size:100%;"> <?php echo $message; ?></div> -->
+              <label for="desc"><h4> Plan Description <span>*</span></h4></label>
+           
+
+                <input class="form-control" type="text" name="desc" id="desc" value="<?php if(isset($_POST['desc'])){ echo htmlentities($_POST['desc']);}?>" required />
+
+             
+             <label for="rate"><h4>Rate <span>*</span></h4></label>
+            <input class="form-control" type="number" name="rate" id="rate" value="<?php if(isset($_POST['rate'])){ echo htmlentities($_POST['rate']);}?>" required />
+           
+            <label for=""><h4>User Type <span>*</span></h4></label>
+           
+         
+
+         <div class="sample">
+  <select name="usertype"class="form-control">
+    <option value="Agency">Agency</option>
+    <option value="Enduser">End User</option>
+  </select>
+
+
+
+       
+        <div style="margin-top: 20px;">
+        <button type="submit" class="btn btn-fab btn-info mdi-navigation-check" name="add"  /> &nbsp;
+  &nbsp;
+  
+            <button class="btn btn-fab btn-danger mdi-navigation-close" data-dismiss="modal"></button>
+          </div>
+        </center>
+        
+        </div>
+
+
+
+</form>
+
+
+      </div>
+      <div class="modal-footer">
+    
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
+</script>
+
+</body>
 </html>
