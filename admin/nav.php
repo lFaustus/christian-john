@@ -14,7 +14,7 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a style="color:#eee; padding-top: 20px; padding-bottom:20px; " href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                   <!--  <a style="color:#eee; padding-top: 20px; padding-bottom:20px; " href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu message-dropdown">
                         <li class="message-preview">
                             <a href="#">
@@ -65,9 +65,10 @@
                             <a href="#">Read All New Messages</a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
-                <!-- NOTIFICATIONS -->
+       
+   <!-- NOTIFICATIONS -->
 
                 <li class="dropdown">
                     <a style="color:#eee; padding-top: 20px; padding-bottom:20px; " href="#" class="dropdown-toggle" data-toggle="dropdown"  class="badge"> <i class="fa fa-bell"> <?php echo $noti[0]['agency_pending'];?></i>  <b class="caret"></b></a>
@@ -76,11 +77,13 @@
                             <li>
                                 <a href="npagencies.php"><span class="label label-danger"><?php if($notif['status'] == 'NPaid'){ echo "UNSUBSCRIBED"; }else{ echo "PENDING"; }?></span> &nbsp; <?php echo $notif['agencyname'];?> </a>
                             </li>
-                            <li class="divider"></li>
+                    
+
                         <?php }?>
 
                     </ul>
                 </li>
+
 
 
                 <li class="dropdown">
@@ -91,13 +94,11 @@
                         <li>
                             <a href="adminprofile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
+                       
                         <li>
                             <a href="changepassadmin.php"><i class="fa fa-fw fa-gear"></i> Change Password</a>
                         </li>
-                        <li class="divider"></li>
+                    
                         <li>
                             <a href="logoutadmin.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>

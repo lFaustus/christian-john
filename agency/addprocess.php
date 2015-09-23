@@ -301,28 +301,20 @@ else
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../js/bootstrap.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="../js/plugins/morris/raphael.min.js"></script>
-    <script src="../js/plugins/morris/morris.min.js"></script>
-    <script src="../js/plugins/morris/morris-data.js"></script>	
 <script src="../js/jquery.min.js"></script> 
 <script>
-	function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-                $('#blah').attr('src', e.target.result);
-            }
-            
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    
-    $("#imgInp").change(function(){
-        readURL(this);
-    });
+$(document).ready(function (){
+    $("#fnivel").change(function () {
+  var selected_option = $('#fnivel').val();
+
+  if (selected_option != 'Null') {
+    $('#fnivel2').attr('pk','1').show();
+  }
+  if (selected_option == 'Null') {
+    $("#fnivel2").removeAttr('pk').hide();
+  }
+})
+  });   
 </script>
 
 </body>

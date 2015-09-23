@@ -203,9 +203,9 @@ function updateagency($id)
 function notify_adminToagency(){
 	$db = database();
 	$status = "pending";
-	$npaid  = 'NPaid';
+	// $npaid  = 'NPaid';
 
-	$sql = $db->prepare('select count(agencyid) as agency_pending from agency where status="pending" or status="NPaid"');
+	$sql = $db->prepare('select count(agencyid) as agency_pending from agency where status="pending"');
 	$sql->execute();
 	return $sql->fetchAll();
 	$db = null;
@@ -214,12 +214,12 @@ function notify_adminToagency(){
 
 
 
-////notif sa not yet registered nga agencies ngadto sa admin/////
+//notif sa not yet registered nga agencies ngadto sa admin/////
 function notify_NYS(){
 	$db = database();
 	$status = "NPaid";
 
-	$sql = $db->prepare('select  agencyname,status from agency where status="'.$status.'" or status="pending"');
+	$sql = $db->prepare('select  agencyname,status from agency where status="pending"');
 	$sql->execute();
 	return $sql->fetchAll();
 	$db = null;

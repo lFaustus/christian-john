@@ -40,6 +40,8 @@ if(isset($_POST['login']))
 
     <link rel="stylesheet" type="text/css" href="dist/css/material.css">
     <link rel="stylesheet" type="text/css" href="dist/css/material.min.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/ripples.min.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/ripples.css">
 
     <!-- MATERIAL CSS -->
   <!--   <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/> -->
@@ -63,7 +65,7 @@ if(isset($_POST['login']))
    
 
 
-	<div class="sample shadow-z-2" style="background-color:white;padding:50px;margin-left:400px; margin-right:400px; margin-top:50px;">
+	<div class="sample shadow-z-2" style="background-color:white;padding:50px;margin-left:400px; margin-right:400px; margin-top:40px;">
 <form method="POST">
 
 <center>
@@ -71,21 +73,30 @@ if(isset($_POST['login']))
 </center>
 		<center> <h2> Admin Login </h3></center>
  <div class="form-group">
-    <label class="control-label" for="inputLarge">Username:</label>
-    <input class="form-control input-lg" type="text" id="inputLarge"  pattern=".{8,15}" required title="8 to 15 characters" name="username" id="username" autocomplete="off"/>
-</div>
+   <!--  <label class="control-label" for="inputLarge"><h4>Username</h4></label> -->
+   <i> <input placeholder="Username" class="form-control input-lg" type="text" id="inputLarge"  pattern=".{8,15}" required title="8 to 15 characters" name="username" id="username" autocomplete="off"/>
+</div></i>
 
  <div class="form-group">
-    <label for="password" class="control-label" for="inputLarge" autocomplete="off">Password:</label>
-    <input class="form-control input-lg" type="password" id="inputLarge" pattern=".{6,13}" required title="6 to 13 characters" name="password" id="password"/>
-</div>
+<!--     <label for="password" class="control-label" for="inputLarge" autocomplete="off"><h4>Password</h4></label> -->
+   <i> <input  placeholder="Password" class="form-control input-lg" type="password" id="inputLarge" pattern=".{6,13}" required title="6 to 13 characters" name="password" id="password"/>
+</div></i>
 
 <div style="color: red; "><center><h4><?php echo $error; ?></h4></center></div>
 
+
+<div style="padding-left: 350px; padding-top: 10px;">
  <button type="submit" class="btn btn-primary btn-lg btn-block" name="login">SIGN IN</button>
 
 
     <button type="reset" class="btn btn-default btn-raised btn-lg btn-block" value="Reset">Reset</button>
+</div>
+
+<div style="text-align: center;">
+<a href="../index.php" class="btn btn-default btn-fab btn-raised mdi-action-home"></a>
+</div>
+
+
 </div>
 </div>
 </div>
@@ -104,6 +115,10 @@ if(isset($_POST['login']))
 </body>
 </html>
 
+
+<link rel="stylesheet" type="javascript" href="dist/js/ripples.js">
+
+<link rel="stylesheet" type="javascript" href="dist/js/ripples.min.js">
     
 <!-- Omit this part : Just a footer -->
 <div style="position:fixed;bottom:10px;left:10px;background:#4679BC;padding:4px;border-radius:2px;border:1px solid #4679AA"><a href="" title="more ..." style="padding:6px;text-decoration:none;font-size:12px;color:#fff;letter-spacing: 1.5px;">&copy ENDINMIND</a></div>

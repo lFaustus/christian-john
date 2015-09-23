@@ -97,8 +97,6 @@ function agency($info)
 	$db=null;
 	return $v;
 }
-
-
 function updateagency($info)
 {
 	$agencyname=trim($info['agencyname']);
@@ -548,7 +546,7 @@ function deletesubsteps($id)
 }
 function plan()
 {
-	$type='EndUser';
+	$type='Agency';
 	$db = database();
 	$sql="SELECT * FROM plan WHERE usertype = ?";
 	$st=$db->prepare($sql);
@@ -559,9 +557,8 @@ function plan()
 }
 function findplan($id)
 {
-	$type='EndUser';
 	$db = database();
-	$sql="SELECT * FROM plan WHERE planid";
+	$sql="SELECT * FROM plan WHERE planid = ?";
 	$st=$db->prepare($sql);
 	$st->execute(array($id));
 	$p = $st->fetch();
@@ -602,7 +599,7 @@ function agencyplan()
 function subcription($info)
 {
 	$pid=trim($info['pl']);
-	$ue = trim($info['id']);
+	$a = trim($info['id']);
 	$p=findplan($pid);
 	$d = date('y-m-d');
 	$date=date_create("$d");
@@ -622,16 +619,18 @@ function subcription($info)
 	$db = database();
 	$sql="INSERT INTO subscription(subscribedby,planid,numsubscription,totalamount,paypalactno,dateapplied,startdate,enddate,status) VALUES(?,?,?,?,?,?,?,?,?)";
 	$st=$db->prepare($sql);
-	$st->execute(array($ue,$pid,$no,$total,$pay,$d,$d,$end,$status));
+	$st->execute(array($a,$pid,$no,$total,$pay,$d,$d,$end,$status));
 	$db=null;
 }
 function updatesubcription($info)
 {
 	$pid=trim($info['pl']);
-	$ue = trim($info['id']);
-	$p=findplanagency($pid);
+	$a = trim($info['id']);
+	$p=findplan($pid);
 	$d = date('y-m-d');
 	$date=date_create("$d");
+	$sub=findsubs($a);
+	uesubsupdate($sub['subid']);
 	$no=trim($info['no']);
 	if($p['plandesc'] == "Monthly")
 	{
@@ -643,22 +642,30 @@ function updatesubcription($info)
 	}
 	$end =date_format($date,"Y-m-d");
 	$pay=trim($info['pay']);
-	$total = $p['rate'] * $no;
-	$sub=findsubs($ue);
-	$ttotal = $sub['total'] + $total; 
+	$total = $p['rate'] * $no; 
 	$status = "Active";
 	$db = database();
-	$sql="UPDATE subscription SET planid = ?, numsubscription = ? , totalamout = ?, paypalactno = ?, startdate = ?, enddate=? WHERE subscribedby = ?";
+	$sql="INSERT INTO subscription(subscribedby,planid,numsubscription,totalamount,paypalactno,dateapplied,startdate,enddate,status) VALUES(?,?,?,?,?,?,?,?,?)";
 	$st=$db->prepare($sql);
-	$st->execute(array($pid,$no,$ttotal,$pay,$d,$end,$ue));
+	$st->execute(array($a,$pid,$no,$total,$pay,$d,$d,$end,$status));
+	$db=null;
+}
+function uesubsupdate($id)
+{
+	$status = "Deactive";
+	$db = database();
+	$sql="UPDATE subscription SET status = ? WHERE subid = ?";
+	$st=$db->prepare($sql);
+	$st->execute(array($status,$id));
 	$db=null;
 }
 function findsubs($id)
 {
+	$status="Active";
 	$db = database();
-	$sql="SELECT * FROM subscription WHERE subscribedby = ?";
+	$sql="SELECT * FROM subscription WHERE subscribedby = ? and status = ?";
 	$st=$db->prepare($sql);
-	$st->execute(array($id));
+	$st->execute(array($id,$status));
 	$sub = $st->fetch();
 	$db=null;
 	return $sub;
@@ -673,5 +680,25 @@ function findagencyplan($id)
 	$p = $st->fetch();
 	$db=null;
 	return $p;
+}
+function approveagency($id)
+{
+	$status = "Active";
+	$db = database();
+	$sql="UPDATE agency SET status = ? WHERE agencyid = ?";
+	$st=$db->prepare($sql);
+	$st->execute(array($status,$id));
+	$db = null;
+	
+}
+function listsubscription($id)
+{
+	$db=database();
+	$sql="SELECT s.numsubscription,s.totalamount,s.paypalactno,s.startdate,s.enddate,p.plandesc,p.rate FROM subscription s JOIN plan p ON s.planid = p.planid WHERE s.subscribedby = ? ORDER BY s.subid DESC";
+	$st=$db->prepare($sql);
+	$st->execute(array($id));
+	$sb = $st->fetchAll();
+	$db=null;
+	return $sb;
 }
 ?>

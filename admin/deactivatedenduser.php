@@ -62,12 +62,13 @@ else
     
                        <?php include ('sidebar-admin.php'); ?>
 
-        <div id="page-wrapper">
+      <div style="margin-left:30px; margin-right:30px;">
 
-            <div class="container-fluid">
-
-                <div style="margin:30px;
-                            padding-top: 30px;">
+                <div  class="panel panel-info">
+    <div style="padding-bottom: 80px; text-align: center;" class="panel-heading">
+  <h3 style="padding-top: 30px; "class="panel-title mdi-action-face-unlock mdi-4x"><h2> Deactivated End Users</h2></h3>
+    </div>
+    <div style="padding:10px; padding-left: 60px; padding-right: 60px; " class="panel-body">
                   
                 <?php if($ag){?>
                  <div class = "table-responsive">
@@ -106,7 +107,10 @@ else
 <?php foreach($ag as $a){?>
              <tr>  
            
-            <td> <a type="button" href="enduseractivate.php?id=<?php echo $a['euid'];?> " class="btn btn-success btn-fab btn-raised mdi-action-done"></a>
+
+           <td> <a type="button" href="enduseractivate.php?id=<?php echo $a['euid'];?> " style="color: green;" class="mdi-action-done mdi-2x" style="background-color:white;"></a> 
+
+           
                 
             </td>  
             <td><?php echo $a['firstname']." ".$a['mi']." ".$a['lastname'];?> </td>  
@@ -128,7 +132,7 @@ $message = "No Deactivated Users";
 
  
         
- <div style="background-color: #fff; border-bottom: 2px solid #eee; color:black; padding: 20px; text-align:center; font-size:200%; margin-top: 20px; color: #555;"><h3> 
+ <div style="background-color: #fff;  color:black; padding: 20px; text-align:center; font-size:200%; margin-top: 20px; color: #555;"><h3> 
 <?php echo $message; ?></h3></div>  
 
 

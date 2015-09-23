@@ -18,7 +18,10 @@ else
 }
 
 
-
+$t1=0;
+$t2=0;
+$t3=0;
+$t4=0;
 $a=plnAG(1);
 $b=plnAG(2);
 
@@ -85,32 +88,33 @@ $eu1=reportsyearlyEU();
             <!-- Sidebar inclusion -->
   <?php include ('sidebar-admin.php'); ?>
 
+    
+     <div style="margin-left:30px; margin-right:30px;">
 
+                <div  class="panel panel-info">
+    <div style="padding-bottom: 60px; text-align: center;" class="panel-heading">
+        <h3 style="padding-top: 30px; "class="panel-title mdi-action-receipt mdi-4x"><h2> Subscription Reports</h2></h3>
+    </div>
+    <div style="padding:10px; padding-left: 60px; padding-right: 60px; " class="panel-body">
 
- 
-
-        <div id="page-wrapper">
-
-
-
-                
-            <div class="container-fluid">
     
             <!-- Page Heading -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
 
-                        <h1 class="breadcrumb">
+                        <h1 style="text-align: center;"class="breadcrumb ">
+
                             <small>             <i class="fa fa-line-chart"></i> &nbsp;Plan Reports Summary</small>
                         </h1>
                     </div>
                 </div>
+                <center>
                 Monthly Subscription -  Agencies: (<?php echo count($agm);?>) <br>
                 Yearly Subscription -  Agencies: (<?php echo count($agy);?>) <br>
                 Monthly Subscription -  End User: (<?php echo count($eu);?>) <br>
                 Yearly Subscription -  End User: (<?php echo count($eu1);?>)
 
-
+            </center>
             </div>
 
 
@@ -151,19 +155,28 @@ $eu1=reportsyearlyEU();
                         </tr>  
                     </thead>  
                     <tbody>  
-                        <?php foreach($a as $a){?>
+                        <?php foreach($a as $a){$t1=$t1 + $a['totalamount'];?>
                       
                         <tr>  
                             <td><?php echo $a['agencyname'];?></td>
                             <td><?php echo $a['paypalactno'];?></td>  
                             <td><?php echo $a['dateapplied'];?></td>  
                             <td><?php echo $a['enddate'];?></td>
+
                         </tr>  
                      
                         <?php }?>
+
+
                     </tbody>  
                 </table> 
+                <br>
+                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                <p> Total: <?php echo $t1;?></p></div>
+            </div>
      <!--        <?php }
+
         else {
         $message = "";
         }?>
@@ -196,7 +209,7 @@ $eu1=reportsyearlyEU();
                         </tr>  
                     </thead>  
                     <tbody>  
-                        <?php foreach($b as $b){?>
+                        <?php foreach($b as $b){$t2=$t2 + $b['totalamount'];?>
                         <tr> 
                             <td><?php echo $b['agencyname'];?></td>
                             <td><?php echo $b['paypalactno'];?></td>  
@@ -206,6 +219,13 @@ $eu1=reportsyearlyEU();
                         <?php }?>
                     </tbody>  
                 </table> 
+
+                <br>
+                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                <p> Total: <?php echo $t2;?></p></div>
+            </div>
+
             <?php }
         else {
         $message = "";
@@ -249,7 +269,7 @@ $eu1=reportsyearlyEU();
                         </tr>  
                     </thead>  
                     <tbody>  
-                        <?php foreach($c as $b){?>
+                        <?php foreach($c as $b){$t3=$t3 + $b['totalamount'];?>
                         <tr>  
                             <td><?php echo $b['firstname'];?></td>
                             <td><?php echo $b['paypalactno'];?></td>  
@@ -259,6 +279,13 @@ $eu1=reportsyearlyEU();
                         <?php }?>
                     </tbody>  
                 </table> 
+
+                <br>
+                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                <p> Total:<?php echo $t3;?> </p></div>
+            </div>
+
             <?php }
         else {
         $message = "";
@@ -291,7 +318,7 @@ $eu1=reportsyearlyEU();
                         </tr>  
                     </thead>  
                     <tbody>  
-                        <?php foreach($d as $b){?>
+                        <?php foreach($d as $b){$t4=$t4 + $b['totalamount'];?>
                         <tr> 
                             <td><?php echo $b['firstname'];?></td>
                             <td><?php echo $b['paypalactno'];?></td>  
@@ -301,6 +328,13 @@ $eu1=reportsyearlyEU();
                         <?php }?>
                     </tbody>  
                 </table> 
+
+                <br>
+                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                <p> Total:<?php echo $t4;?> </p></div>
+            </div>
+
             <?php }
         else {
         $message = "";

@@ -84,13 +84,15 @@ if(isset($_POST['add']))
   <?php include ('sidebar-admin.php'); ?>
 
  
+ <div style="margin-left:30px; margin-right:30px;">
 
-        <div id="page-wrapper">
+                <div  class="panel panel-info">
+    <div style="padding-bottom: 80px; text-align: center;" class="panel-heading">
+  <h3 style="padding-top: 30px; "class="panel-title mdi-action-assignment mdi-4x"><h2> Plan List</h2></h3>
+    </div>
+    <div style="padding:10px; padding-left: 60px; padding-right: 60px; " class="panel-body">
 
-            <div class="container-fluid">
-    
 
-            <div style="margin:30px;">
 <button class="btn btn-info" data-toggle="modal" data-target="#complete-dialog"> Add Plan</button>
             <?php if($plan){?>
              <div class = "table-responsive">
@@ -128,7 +130,7 @@ if(isset($_POST['add']))
 
             </td>  
             <td>
-            <a href="updateplan.php?id=<?php echo $p['planid'];?>" style="color: yellowgreen;" class="mdi-editor-mode-edit" ></a> &nbsp; &nbsp;
+            <a href="updateplan.php?id=<?php echo $a['planid'];?>" style="color: green;" class="mdi-editor-mode-edit" ></a> &nbsp; &nbsp;
              <a onclick="return confirm('Delete?');" href="deleteplan.php?id=<?php echo $a['planid'];?>" style="color: tomato;"class="mdi-action-delete" ></a>
 
             </td>  
@@ -203,9 +205,11 @@ $(document).ready( function () {
            <!--  <div style="background-color: #fff; color:red; padding: 50px; text-align:center; font-size:100%;"> <?php echo $message; ?></div> -->
               <label for="desc"><h4> Plan Description <span>*</span></h4></label>
            
-
-                <input class="form-control" type="text" name="desc" id="desc" value="<?php if(isset($_POST['desc'])){ echo htmlentities($_POST['desc']);}?>" required />
-
+        <div class="sample">
+            <select name="desc"class="form-control">
+            <option value="Monthly ">Monthly</option>
+            <option value="Yearly">Yearly</option>
+              </select>
              
              <label for="rate"><h4>Rate <span>*</span></h4></label>
             <input class="form-control" type="number" name="rate" id="rate" value="<?php if(isset($_POST['rate'])){ echo htmlentities($_POST['rate']);}?>" required />

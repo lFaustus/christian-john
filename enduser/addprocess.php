@@ -24,7 +24,7 @@ if(isset($_POST['add']))
 }
 else
 {
-	header('location:../intro.php');
+	header('location:logoutuser.php');
 	exit;
 }
 
@@ -268,7 +268,7 @@ else
 </tr>
 <tr>
 <td><label>Recurrence</label></td>
-<td><select name="recurrence">
+<td><select id="fnivel" name="recurrence">
 <option value="Null">None</option>
 <option value="Monthly">Monthly</option>
 <option value="Yearly">Yearly</option>
@@ -276,11 +276,11 @@ else
 </tr>
 <tr>
 <td><label for="numrecurrence">Number of Recurrence</label></td>
-<td><input type="number" name="numrecurrence" id="numrecurrence" value="<?php if(isset($_POST['numrecurrence'])){ echo htmlentities($_POST['numrecurrence']);}?>" min="1" max="10" /></td>
+<td><input id="fnivel2" hidden="hidden" pk="1" type="number" name="numrecurrence" id="numrecurrence" value="<?php if(isset($_POST['numrecurrence'])){ echo htmlentities($_POST['numrecurrence']);}?>" min="1" max="10" /></td>
 </tr>
 <tr>
 <td><label for="agency">Agency</label></td>
-<td><input type="text" name="agency" id="agency" value="<?php if(isset($_POST['agency'])){ echo htmlentities($_POST['agency']);}?>"/></td>
+<td><input  type="text"  name="agency" id="agency" value="<?php if(isset($_POST['agency'])){ echo htmlentities($_POST['agency']);}?>"/></td>
 </tr>
 <tr>
 <td>&nbsp;</td>
@@ -312,21 +312,18 @@ else
     <script src="../js/plugins/morris/morris-data.js"></script>	
 <script src="../js/jquery.min.js"></script> 
 <script>
-	function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-                $('#blah').attr('src', e.target.result);
-            }
-            
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    
-    $("#imgInp").change(function(){
-        readURL(this);
-    });
+$(document).ready(function (){
+    $("#fnivel").change(function () {
+  var selected_option = $('#fnivel').val();
+
+  if (selected_option != 'Null') {
+    $('#fnivel2').attr('pk','1').show();
+  }
+  if (selected_option == 'Null') {
+    $("#fnivel2").removeAttr('pk').hide();
+  }
+})
+  });	
 </script>
 
 </body>

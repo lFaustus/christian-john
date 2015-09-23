@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<!--
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+		<link rel="apple-touch-startup-image" href="images/apple-touch-startup-image-320x460.png" />
+-->
+		<title>SMEAG Global Education</title>
+		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+		<link type="text/css" rel="stylesheet" href="colors/green/green.css"/>
+		<link type="text/css" rel="stylesheet" href="css/idangerous.swiper.css"/>
+		<link type="text/css" rel="stylesheet" href="css/swipebox.css" />
+		<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css' />
+		<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/PushNotification.js"></script>
+		<script type="text/javascript" src="js/base.js"></script>
+		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+		<script type="text/javascript">
+			app.initialize();
+			back.initialize();
+        </script>
+	</head>
+
+	<body>
+		<div id="header">
+			<div class="gohome radius20">
+				<a href="#"><img src="images/icons/home.png" alt="" title="" /></a>
+			</div>
+		</div>
+		<div class="swiper-container swiper-parent">
+			<div class="swiper-wrapper">
+				<!--Menu page-->
+				<div class="swiper-slide sliderbg_menu">
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="slide-inner">
+									<div class="logo">
+										<a href="#"><img src="colors/green/images/logo.png" alt="" title="" border="0" /></a>
+									</div>
+									<div class="menu">
+										<ul>
+											<li><a href="javascript:check_login(0);"><img src="images/icons/light.png" /><span>Notice</span></a></li>
+											<li><a href="javascript:check_login(1);"><img src="images/icons/pencil.png" /><span>Test Result</span></a></li>
+											<li><a href="javascript:check_login(2);"><img src="images/icons/docs.png" /><span>Attendance</span></a></li>
+											<li><a href="javascript:check_login(3);"><img src="images/icons/blog.png" /><span>Comment</span></a></li>
+											<li><a href="javascript:check_login(4);"><img src="images/icons/warning.png" /><span>Warning</span></a></li>
+											<li><a href="javascript:check_login(5);"><img src="images/icons/tools.png" /><span>Sign in</span></a></li>
+											<li><a href='#' onclick='openURL("http://smenglish.com")'><img src="images/icons/social/homepage.png"  /><span>Homepage</span></a></li>
+											<li><a href='#' onclick='openURL("http://facebook.com/smeducation")'><img src="images/icons/social/facebook.png" /><span>Facebook</span></a></li>
+											<li><a href='#' onclick='openURL("http://www.youtube.com/user/SMEphilippine")'><img src="images/icons/social/youtube.png" /><span>Youtube</span></a></li>
+										</ul>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-scrollbar"></div>
+					</div> 
+				</div>
+
+				<!--Page 1 Content: Notice Page-->
+				<div class="swiper-slide sliderbg">
+					<div id="swiper-nested1" class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="slide-inner">
+									<div class="pages_container">
+                                        <h2 class="page_title green_borderbottom">Notice</h2>				
+										<div id="displayNews"></div>	
+                                        <div class="clearfix"></div>
+      									<div id="scrolltop1" class="scrolltop radius20">
+											<a href="#"><img src="images/icons/top.png" alt="Go on top" title="Go on top" /></a>
+										</div>
+                                    </div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-scrollbar"></div>
+					</div>
+				</div>
+
+				<!--Page 2 Content: Test Result Page -->
+				<div class="swiper-slide sliderbg">
+					<div id="swiper-nested2" class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="slide-inner">
+									<div class="pages_container">
+										<h2 class="page_title green_borderbottom">Test Result</h2>
+											<div class="toogle_wrap radius8">
+												<div class="trigger">
+													<a href="#">Filter</a>
+												</div>
+												<div class="toggle_container">
+													<ul class="listing_detailed">
+														<li><a href="javascript:dispTestResult(0);">Show All</a></li>
+														<li><a href="javascript:dispTestResult(1);">Progress Test</a></li>
+														<li><a href="javascript:dispTestResult(2);">TOEIC Test</a></li>
+														<li><a href="javascript:dispTestResult(3);">TOEFL Test</a></li>
+														<li><a href="javascript:dispTestResult(4);">IELTS Test</a></li>
+													</ul>
+												</div>
+											</div>
+											<div id="displayTEScore"></div>
+										<div class="clearfix"></div>
+										<div id="scrolltop2" class="scrolltop radius20">
+											<a href="#"><img src="images/icons/top.png" alt="Go on top" title="Go on top" /></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-scrollbar"></div>
+					</div>
+				</div>
+
+				<!--Page 3 Content: Attendance Page-->
+				<div class="swiper-slide sliderbg">
+					<div id="swiper-nested3" class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="slide-inner">
+									<div class="pages_container">
+										<div class="posts_archive_page">
+											<h2 class="page_title green_borderbottom">Attendance</h2>
+											<ul class="posts">
+												<div id="displayAttendance"></div>
+											</ul>
+										</div>
+										<div id="scrolltop3" class="scrolltop radius20">
+											<a href="#"><img src="images/icons/top.png" alt="Go on top" title="Go on top" /></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-scrollbar"></div>
+					</div>
+				</div>
+
+				<!--Page 4 Content: Teacher's Comment Page-->
+				<div class="swiper-slide sliderbg">
+					<div id="swiper-nested4" class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="slide-inner">
+									<div class="pages_container">
+                                        <h2 class="page_title green_borderbottom">Teacher's Comment</h2>
+										<div id="teacher_comment">
+											<div id="displayTeacher"></div>
+											<div id="displayComment"></div>
+										</div>
+                                        <div class="clearfix"></div>
+      									<div id="scrolltop4" class="scrolltop radius20">
+											<a href="#"><img src="images/icons/top.png" alt="Go on top" title="Go on top" /></a>
+										</div>
+                                    </div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-scrollbar"></div>
+					</div>
+				</div>
+
+				<!--Page 5 content: Warning Page-->
+				<div class="swiper-slide sliderbg">
+					<div id="swiper-nested5" class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="slide-inner">
+                                    <div class="pages_container">
+                                        <h2 class="page_title green_borderbottom">Warning</h2>
+										<div id="displayWarning"></div>
+                                        <div class="clearfix"></div> 
+     									<div id="scrolltop5" class="scrolltop radius20">
+											<a href="#"><img src="images/icons/top.png" alt="Go on top" title="Go on top" /></a>
+										</div>
+                                    </div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-scrollbar"></div>
+					</div>
+				</div>
+				
+				<!--Page 6 Content: Log in Page-->
+				<div class="swiper-slide sliderbg">
+					<div id="swiper-nested6" class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="slide-inner">
+									<div class="pages_container">
+										<h2 class="page_title green_borderbottom">Sign in</h2>
+										<p>
+											Welcome to SMEAG Mobile App. After login, you can check your test result,
+											attendance, teacher's comment and warning.
+											<br/>
+											<br/>
+											<strong>NOTE: Always check your internet connection.</strong>
+										</p>
+
+										<div class="form">
+											<div id="login-form">
+												<label>Passport No.</label>
+												<input type="text" id="passport" value="" class="form_input radius4 required" />
+												<input type="button" name="submit" class="form_submit radius4 green green_borderbottom" id="submit" value="Login" onclick="checkMember();" />
+											</div>
+											
+											<div id="user-data" style="display:none;">
+												<input type="button" name="submit" class="form_submit radius4 green green_borderbottom" id="submit" value="Logout" onclick="removeUser();" />
+											</div>
+										</div>
+										
+										<script type="text/javascript">
+											checkSession();
+										</script>
+
+										<div class="clearfix"></div>
+										<div id="scrolltop6" class="scrolltop radius20">
+											<a href="#"><img src="images/icons/top.png" alt="Go on top" title="Go on top" /></a>
+										</div>    
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-scrollbar"></div>
+					</div>
+				</div>
+				
+				<!-- end of pages -->
+			</div>
+			<div class="pagination"></div>
+		</div>
+
+		<script type="text/javascript" src="js/jquery.swipebox.js"></script>
+		<script type="text/javascript" src="js/idangerous.swiper-2.1.min.js"></script>
+		<script type="text/javascript" src="js/idangerous.swiper.scrollbar-2.1.js"></script>
+		<script type="text/javascript" src="js/jquery.tabify.js"></script>
+		<script type="text/javascript" src="js/jquery.fitvids.js"></script>
+<!--
+		<script type="text/javascript" src="js/code.js"></script>
+-->
+		<script type="text/javascript" charset="utf-8">
+			var $ = jQuery.noConflict();  
+
+			var swiperParent = new Swiper('.swiper-parent', {
+				pagination: '.pagination',
+				paginationClickable: false,
+				onSlideChangeEnd : function() {
+					// Do something when you touch the slide
+					if (swiperParent.activeIndex != 0) {
+						$('#header').animate({'top':'0px'}, 400);
+						check_login(swiperParent.activeIndex - 1);
+					}
+					if (swiperParent.activeIndex == 0) {
+						$('#header').animate({'top':'-100px'}, 400);
+					}
+				}
+			});
+
+			var swiperNested1 = new Swiper('#swiper-nested1', {
+				mode:'vertical',
+				scrollContainer: true,
+				scrollbar: {
+					container:$(this).find('.swiper-scrollbar')[1]
+				}
+			});
+			var swiperNested2 = new Swiper('#swiper-nested2', {
+				mode:'vertical',
+				scrollContainer: true,
+				scrollbar: {
+					container:$(this).find('.swiper-scrollbar')[1]
+				}
+			});
+			var swiperNested3 = new Swiper('#swiper-nested3', {
+				mode:'vertical',
+				scrollContainer: true,
+				scrollbar: {
+					container:$(this).find('.swiper-scrollbar')[1]
+				}
+			});
+			var swiperNested4 = new Swiper('#swiper-nested4', {
+				mode:'vertical',
+				scrollContainer: true,
+				scrollbar: {
+					container:$(this).find('.swiper-scrollbar')[1]
+				}
+			});
+			var swiperNested5 = new Swiper('#swiper-nested5', {
+				mode:'vertical',
+				scrollContainer: true,
+				scrollbar: {
+					container:$(this).find('.swiper-scrollbar')[1]
+				}
+			});
+			var swiperNested6 = new Swiper('#swiper-nested6', {
+				mode:'vertical',
+				scrollContainer: true,
+				scrollbar: {
+					container:$(this).find('.swiper-scrollbar')[1]
+				}
+			});
+
+			function check_login(i) {
+				var user = window.localStorage.getItem('passport');
+
+				if ((user == 'undefined' || user == null || user.length == 0) && i != 0 && i != 5) {
+					alert('You need to log in first!');
+					i = 5;
+				}
+				switch (i) {
+					case 0 : swiperNested1.reInit(); break;
+					case 1 : swiperNested2.reInit(); break;
+					case 2 : swiperNested3.reInit(); break;
+					case 3 : swiperNested4.reInit(); break;
+					case 4 : swiperNested5.reInit(); break;
+					case 5 : swiperNested6.reInit(); break;
+					default : break;
+				}
+				swiperParent.swipeTo(i+1);
+			}
+		</script>
+		<script type="text/javascript" src="js/load.js"></script>
+
+	</body>
+</html>

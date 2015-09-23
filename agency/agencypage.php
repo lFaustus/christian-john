@@ -5,17 +5,48 @@ if($login)
 {
 $id=$_SESSION['id'];
 $info=agency($id);
+$message="";
+$process=listprocess($id);
+
+if(isset($_POST['add']))
+{   
+    if(trim($_POST['processname'])== false)
+    {
+        $message="Enter a Process Name";
+    }
+    else
+    {
+    $_POST['id']=$id;
+    addprocess($_POST);
+    header('location:listprocess.php');
+    exit();
+    }
+}
+if(isset($_POST['search']))
+{   
+    if(trim($_POST['val']) == false)
+    {
+        $message="Enter a Value For Search";
+    }
+    else
+    {
+        $_POST['id']=$id;
+        $process=searchprocess($_POST);
+    }
+}
 
 }
+
+
 else
 {
 	header('location:../intro.php');
 	exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -24,240 +55,186 @@ else
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>Agency - ENDINMIND</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="../css/sb-admin.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="../css/plugins/morris.css" rel="stylesheet">
+    <link href="css/admin.css" rel="stylesheet">
+
 
     <!-- Custom Fonts -->
      <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	<!-- Data Tables -->
-	<link rel="stylesheet" href="../css/jquery.dataTables.min.css">
-	<script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
 </head>
+
+
 
 <body>
 
+
+   
     <div id="wrapper">
+<!-- TOP NAV BAR -->
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <b style = "color:#eb477d;font-size:26px" class="navbar-brand" href="index.html">ENDINMIND</b>
-            </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu message-dropdown">
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img class="img-rounded" width="16" height="16" src="files/<?php echo $info['logo'];?>" />
+   <?php include ('nav.php'); ?>
 
-					<?php echo $info['agencyname']; ?> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="agencyprofile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="changepassagency.php"><i class="fa fa-fw fa-gear"></i> Change Password</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="logoutagency.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li class = "active">
-                        <a style = "color:#1ebb90" href="listprocess.php" data-toggle="collapse" data-target="#demo" ><i class = "fa fa-fw fa-tasks"></i> Process <i style = "font-size:12px" ></i></a>
-                    
-                    </li>
-					
-                    <li>
-                        <a title = "Subscription" style = "color:#1ebb90" href="#"><i class="fa fa-fw fa-rss"></i> Subscription</a>
-                    </li>
-                     <li>
-                        <a title = "Subscription" style = "color:#1ebb90" href="#"><i class="fa fa-fw fa-rss"></i>Reports</a>
-                    </li>
-					<li>
-                       <div style = "margin-left:20px;height:1px;width:180px;background:#1ebb90"></div>
-                    </li>
-					
-                    <li>
-                       <button class = "btn btn-success" style = "margin-left:20px; margin-top:25px"><b>Create Process</b> </button>
-                    </li>
-					
-
-					<li>
-                       <div style = "margin-left:20px;margin-top:25px;height:1px;width:180px;background:#1ebb90"></div>
-                    </li>
-					
-                    <li>
-						 <p style = "color:#fff;margin-left:20px;margin-top:20px" href="#">Recently Updated Process</p>
-					</li>
-					<li>
-						 <a style = "color:#1ebb90;word-break:break-all;" href="#" ><i class="fa fa-fw fa-square"></i> SSS Educational Loan</a>
-					 </li>
-					 <li>
-						 <a title = "Subscription" style = "color:#1ebb90;word-break:break-all" href="#"><i class="fa fa-fw fa-square"></i> PAG-IBIG Housing Loan</a>
-					 </li>
-			    </ul>
-				
-				
-			</div>
-			     
-            <!-- /.navbar-collapse -->
-        </nav>
-		   
-
-        <div id="page-wrapper">
-
-            <div class="container-fluid">
-
-                
-                 <?php include ('../tab.php'); ?>
-                
-            </div>
-			
-            <!-- /.container-fluid -->
-
-        </div>
-        <!-- /#page-wrapper -->
-    </div>
-    <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <script src="../js/jquery.min.js"></script> 
-<script>
-	function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-                $('#blah').attr('src', e.target.result);
-            }
-            
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
+   <!-- //END OF TOP NAV BAR -->
     
-    $("#imgInp").change(function(){
-        readURL(this);
-    });
+           
+            <!-- Sidebar inclusion -->
+  <?php include ('sidebar-agency.php'); ?>
+
+ 
+ <div style="margin-left:30px; margin-right:30px;">
+
+
+                <div  class="panel panel-info">
+    <div style="padding-bottom: 50px; text-align: center;" class="panel-heading">
+  <h3 style="padding-top: 30px; "class="panel-title mdi-action-assignment mdi-4x"><h2> Process List</h2></h3>
+    </div>
+    <div style="padding:10px; padding-left: 60px; padding-right: 60px; padding-bottom: 50px;" class="panel-body">
+
+      
+			<button class="btn btn-info" data-toggle="modal" data-target="#complete-dialog"> Add Process</button>
+      
+
+
+<?php if($process){?>
+ <div class = "table-responsive">
+      <table class="table table-striped table-hover ">
+    <table id="process" class="display">
+       
+     
+            <thead>  
+          <tr>  
+            <th><center>Action</center></th>
+            <th>Process Name</th>  
+        
+          </tr>  
+        </thead>  
+ 
+        <tfoot>
+              <tr>  
+            <th><center>Action</center></th>
+            <th>Process Name</th>  
+            
+        </tfoot>
+ 
+
+        
+
+        <tbody>
+<?php foreach($process as $p){?>
+             <tr>  
+           
+                <td>
+           <a type="button" href="updateprocess.php?id=<?php echo $p['aprocessid']; ?> " style="color: skyblue;" class="mdi-content-create" style="background-color:white;"></a>
+
+           <a href="deleteprocess.php?id=<?php echo $p['aprocessid']; ?>" onclick = "return confirm('Delete?')" style="color: red;" class="mdi-content-clear" ></a>
+
+                </td>
+
+
+            <td>
+            <a style="color: #FF69B4" href="rspage.php?id=<?php echo $p['aprocessid'];?>"><?php echo htmlentities($p['processname']);?></a>
+             </td>
+            
+          </tr>  
+          <?php }?>
+        </tbody>
+    </table>
+
+    <?php }
+else {
+$message = "No Data";
+}?>
+
+
+ 
+ <div style="background-color: #fff;  color:black; padding: 20px; text-align:center; font-size:200%; margin-top: 20px; color: #555;"><h3> 
+<?php echo $message; ?></h3></div>  
+
+<!-- DataTables CSS -->
+
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.8/js/jquery.dataTables.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+ <script src="../js/bootstrap.min.js"></script>             
+
+<script type="text/javascript">
+$(document).ready( function () {
+    $('#process').DataTable();
+} );
 </script>
-    <script src="../js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../js/bootstrap.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="../js/plugins/morris/raphael.min.js"></script>
-    <script src="../js/plugins/morris/morris.min.js"></script>
-    <script src="../js/plugins/morris/morris-data.js"></script>
+
+<!-- MODAL CREATE PROCESS -->
+
+
+<div id="complete-dialog" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+        <h4 class="modal-title">Create Process</h4>
+      </div>
+      <div class="modal-body">
+        
+
+        <form method="POST">
+        <div class="col-xs-13">
+            <center>
+           <!--  <div style="background-color: #fff; color:red; padding: 50px; text-align:center; font-size:100%;"> <?php echo $message; ?></div> -->
+              <label for="desc"><h4> Process Name</h4></label>
+           
+        <input class="form-control" type="text" name="processname" id="processname" value="<?php if(isset($_POST['processname'])){ echo htmlentities($_POST['processname']);}?>" required/>
+             
+             <label for="recurrence"><h4>Recurrence </h4></label>
+            <div class="sample">
+                 <select name="recurrence" class="form-control">
+            <option value="Null">None</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Yearly">Yearly</option>
+            </select>
+         
+            <label for="rate"><h4>Number of Recurrence</h4></label>
+        <input class="form-control" type="number" name="numrecurrence" id="numrecurrence" value="<?php if(isset($_POST['numrecurrence'])){ echo htmlentities($_POST['numrecurrence']);}?>" min="1" max="10" />
+
+
+
+       
+        <div style="margin-top: 20px;">
+        <button type="submit" class="btn btn-fab btn-info mdi-navigation-check" name="add"  /> &nbsp;
+  &nbsp;
+  
+            <button class="btn btn-fab btn-danger mdi-navigation-close" data-dismiss="modal"></button>
+          </div>
+        </center>
+        
+        </div>
+
+
+
+</form>
+
+
+      </div>
+      <div class="modal-footer">
+
+
+
 
 </body>
 

@@ -46,7 +46,7 @@ if(isset($_POST['register']))
 	else
 	{
 		addadmin($_POST);	
-		header('location:loginadmin.php');
+		header('location:landing.php');
 		exit();
 	}
 }

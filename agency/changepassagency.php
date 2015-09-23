@@ -50,7 +50,6 @@ else
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,7 +61,7 @@ else
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>Agency - ENDINMIND</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -82,231 +81,69 @@ else
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<!-- Data Tables -->
-	<link rel="stylesheet" href="../css/jquery.dataTables.min.css">
-	<script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
+    <!-- Data Tables -->
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 
 </head>
 
+
 <body>
-
+ 
     <div id="wrapper">
+<!-- TOP NAV BAR -->
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <b style = "color:#eb477d;font-size:26px" class="navbar-brand" href="index.html">ENDINMIND</b>
-            </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu message-dropdown">
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img class="img-rounded" width="16" height="16" src="files/<?php echo $info['logo'];?>" />
+   <?php include ('nav.php'); ?>
 
-					<?php echo $info['agencyname']; ?> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="agencyprofile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="changepassagency.php"><i class="fa fa-fw fa-gear"></i> Change Password</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="logoutagency.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li class = "active">
-                        <a style = "color:#1ebb90" href="javascript:;" data-toggle="collapse" data-target="#demo"><i class = "fa fa-fw fa-tasks"></i> My Process <i style = "font-size:12px" class="glyphicon glyphicon-chevron-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a title = "Personal Process" style = "color:#1ebb90" href="pending.html"><i class = "fa fa-fw fa-user"></i> Personal</a>
-                            </li>
-                            <li>
-                                <a title = "Agency Process"style = "color:#1ebb90" href="charts.html"><i class = "fa fa-fw fa-building"></i> Agency</a>
-                            </li>
-							
-                        </ul>
-                    </li>
-					<li>
-                        <a style = "color:#1ebb90" href="javascript:;" data-toggle="collapse" data-target="#demo1"><i class="fa fa-fw fa-file"></i> Document</a>
-                    </li>
-                    <li>
-                        <a title = "Subscription" style = "color:#1ebb90" href="#"><i class="fa fa-fw fa-rss"></i> Subscription</a>
-                    </li>
-					<li>
-                       <div style = "margin-left:20px;height:1px;width:180px;background:#1ebb90"></div>
-                    </li>
-					
-                    <li>
-                       <button class = "btn btn-success" style = "margin-left:20px; margin-top:25px"><b>Create Process</b> </button>
-                    </li>
-					
+   <!-- //END OF TOP NAV BAR -->
+    
+           
+            <!-- Sidebar inclusion -->
+  <?php include ('sidebar-agency.php'); ?>
 
-					<li>
-                       <div style = "margin-left:20px;margin-top:25px;height:1px;width:180px;background:#1ebb90"></div>
-                    </li>
-					
-                    <li>
-						 <p style = "color:#fff;margin-left:20px;margin-top:20px" href="#">Recently Updated Process</p>
-					</li>
-					<li>
-						 <a style = "color:#1ebb90;word-break:break-all;" href="#" ><i class="fa fa-fw fa-square"></i> SSS Educational Loan</a>
-					 </li>
-					 <li>
-						 <a title = "Subscription" style = "color:#1ebb90;word-break:break-all" href="#"><i class="fa fa-fw fa-square"></i> PAG-IBIG Housing Loan</a>
-					 </li>
-			    </ul>
-				
-				
-			</div>
-			     
-            <!-- /.navbar-collapse -->
-        </nav>
-		   
+ 
+ <div style="margin-left:30px; margin-right:30px;">
 
-        <div id="page-wrapper">
 
-            <div class="container-fluid">
-              <!-- Page Heading -->
-      <br/>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class = "well">
-							<h1 style = "color:#eb477d;text-shadow: 3px 1px 2px #999">
-								Change Password
-								<!-- <small>Statistics Overview</small> -->
-							</h1>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
+                <div  class="panel panel-info">
+    <div style="padding-bottom: 50px; text-align: center;" class="panel-heading">
+  <h3 style="padding-top: 30px; "class="panel-title mdi-communication-vpn-key mdi-4x"><h2> Change Password</h2></h3>
+    </div>
+    <div style="padding:10px; padding-left: 60px; padding-right: 60px; padding-bottom: 50px;" class="panel-body">
+
+  
 
 
 
 <br/>
 <!-------->
-<div class = "row">
-  <div class = "col-lg-12">
-   	
+<div  class = "row">
+  <div style="padding-left: 50px; padding-right: 50px;" class = "col-lg-12">
+   	<center>
 	
      <div id="my-tab-content" class="tab-content">
 <form method="POST">
-<table>
-<td><label>UserName:</label></td>
-<td><?php echo htmlentities($info['username']);?></td>
+
+ <label><h4> UserName: </h4></label></td>
+  <input style="text-align: center;" class="form-control" type="text" placeholder="<?php echo htmlentities($info['username']);?> " disabled></input></td>
 </tr>
-<tr>
-<td><label for="pass1">Old Password <span>*</span></label></td>
-<td><input type="password" pattern=".{6,13}" required title="6 to 13 characters" name="pass" id="pass" value="<?php if(isset($_POST['pass'])){ echo htmlentities($_POST['pass']);}?>" required /></td>
+ 
+ <label for="pass1"><h4> Old Password </h4></label></td>
+ <input style="text-align: center;" class="form-control" type="password" pattern=".{6,13}" required title="6 to 13 characters" name="pass" id="pass" value="<?php if(isset($_POST['pass'])){ echo htmlentities($_POST['pass']);}?>" required /></td>
 </tr>
-<tr>
-<td><label for="pass1">Password <span>*</span></label></td>
-<td><input type="password" pattern=".{6,13}" required title="6 to 13 characters" name="pass1" id="pass1" value="<?php if(isset($_POST['pass1'])){ echo htmlentities($_POST['pass1']);}?>" required /></td>
+ 
+ <label for="pass1"><h4> Password </h4></label></td>
+ <input style="text-align: center;" class="form-control" type="password" pattern=".{6,13}" required title="6 to 13 characters" name="pass1" id="pass1" value="<?php if(isset($_POST['pass1'])){ echo htmlentities($_POST['pass1']);}?>" required /></td>
 </tr>
-<tr>
-<td><label for="pass2">Retype Password <span>*</span></label></td>
-<td><input type="password" pattern=".{6,13}" required title="6 to 13 characters" name="pass2" id="pass2" value="<?php if(isset($_POST['pass2'])){ echo htmlentities($_POST['pass2']);}?>" required /></td>
+ 
+ <label for="pass2"> <h4> Retype Password </h4></label></td>
+ <input style="text-align: center;" class="form-control" type="password" pattern=".{6,13}" required title="6 to 13 characters" name="pass2" id="pass2" value="<?php if(isset($_POST['pass2'])){ echo htmlentities($_POST['pass2']);}?>" required /></td>
 </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td><input type="submit" name="update" value="UPDATE"></td>
+     <br/>
+       &nbsp;</td>
+       <input class="btn btn-info btn-raised btn-file" type="submit" name="update" value="UPDATE"></td>
     </tr>
-</table>
+
 </form>
 <div><?php echo $message; ?></div>
  </div>

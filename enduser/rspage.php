@@ -2,20 +2,38 @@
 require 'function.php';
 $message="";
 $flag=0;
-$login=$_SESSION['islogin'];
-if($login)
+
+if(!isset($_SESSION['islogin']))
 {
+		header('location:../intro.php');
+	exit;
+}
 $id=$_SESSION['id'];
 $info=user($id);
 $pid=$_GET['id'];
-}
-else
-{
-	header('location:../intro.php');
-	exit;
-}
+
+$step=liststep($pid);
+$requirement=listrequirement($pid);
+
+    if(isset($_POST['add']))
+    {
+        if(trim($_POST['steps'])==false)
+        {
+            $message="Enter a Step";
+        }
+        else
+        {
+            addstep($_POST);
+            echo "<script type='text/javascript'>alert('Step HAS BEEN Added');</script>";
+            header("location:rspage.php?id=$pid");
+            exit();
+            
+        }
+    }
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +45,7 @@ else
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>Agency - ENDINMIND</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -35,227 +53,120 @@ else
     <!-- Custom CSS -->
     <link href="../css/sb-admin.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link href="../css/plugins/morris.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="dist/css/material.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/material.min.css">
+
+    <!-- MATERIAL CSS -->
+  <!--   <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/> -->
+
+    <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- ADMIN CSS -->
+    <link href="css/admin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
      <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	<!-- Data Tables -->
-	<link rel="stylesheet" href="../css/jquery.dataTables.min.css">
-	<script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
-
 </head>
+
 
 <body>
 
+
+   
     <div id="wrapper">
+<!-- TOP NAV BAR -->
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <b style = "color:#eb477d;font-size:26px" class="navbar-brand" href="index.html">ENDINMIND</b>
-            </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu message-dropdown">
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img class="img-rounded" width="16" height="16" src="files/<?php echo $info['image'];?>" />
-                    
-					<?php echo $info['firstname']." ".$info['mi'].". ".$info['lastname']; ?> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="adminprofile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="changepasseu.php"><i class="fa fa-fw fa-gear"></i> Change Password</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="logoutuser.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li class = "active">
-                        <a style = "color:#1ebb90" href="javascript:;" data-toggle="collapse" data-target="#demo"><i class = "fa fa-fw fa-tasks"></i> My Process <i style = "font-size:12px" class="glyphicon glyphicon-chevron-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a title = "Personal Process" style = "color:#1ebb90" href="pending.html"><i class = "fa fa-fw fa-user"></i> Personal</a>
-                            </li>
-                            <li>
-                                <a title = "Agency Process"style = "color:#1ebb90" href="charts.html"><i class = "fa fa-fw fa-building"></i> Agency</a>
-                            </li>
-							
-                        </ul>
-                    </li>
-					<li>
-                        <a style = "color:#1ebb90" href="javascript:;" data-toggle="collapse" data-target="#demo1"><i class="fa fa-fw fa-file"></i> Document</a>
-                    </li>
-                    <li>
-                        <a title = "Subscription" style = "color:#1ebb90" href="#"><i class="fa fa-fw fa-rss"></i> Subscription</a>
-                    </li>
-					<li>
-                       <div style = "margin-left:20px;height:1px;width:180px;background:#1ebb90"></div>
-                    </li>
-					
-                    <li>
-                       <button class = "btn btn-success" style = "margin-left:20px; margin-top:25px"><b>Create Process</b> </button>
-                    </li>
-					
+   <?php include ('nav.php'); ?>
 
-					<li>
-                       <div style = "margin-left:20px;margin-top:25px;height:1px;width:180px;background:#1ebb90"></div>
-                    </li>
-					
-                    <li>
-						 <p style = "color:#fff;margin-left:20px;margin-top:20px" href="#">Recently Updated Process</p>
-					</li>
-					<li>
-						 <a style = "color:#1ebb90;word-break:break-all;" href="#" ><i class="fa fa-fw fa-square"></i> SSS Educational Loan</a>
-					 </li>
-					 <li>
-						 <a title = "Subscription" style = "color:#1ebb90;word-break:break-all" href="#"><i class="fa fa-fw fa-square"></i> PAG-IBIG Housing Loan</a>
-					 </li>
-			    </ul>
-				
-				
-			</div>
-			     
-            <!-- /.navbar-collapse -->
-        </nav>
-		   
+   <!-- //END OF TOP NAV BAR -->
+    
+           
+            <!-- Sidebar inclusion -->
+  <?php include ('menu.php'); ?>
 
-        <div id="page-wrapper">
+ 
+ <div style="margin-left:30px; margin-right:30px;">
 
-            <div class="container-fluid">
-             <!-- Page Heading -->
-      <br/>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class = "well">
-							<h1 style = "color:#eb477d;text-shadow: 3px 1px 2px #999">
-								Choose Page
-								<!-- <small>Statistics Overview</small> -->
-							</h1>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
+
+                <div  class="panel panel-info">
+    <div style="padding-bottom: 50px; text-align: center;" class="panel-heading">
+  <h3 style="padding-top: 30px; "class="panel-title mdi-action-assignment mdi-4x"><h2> Steps and Requirements</h2></h3>
+    </div>
+    <div style="padding:10px; padding-left: 60px; padding-right: 60px; padding-bottom: 50px;" class="panel-body">
 
 
 
-<br/>
-<!-------->
+
+
+
+<ul class="nav nav-tabs" style="margin-bottom: 15px;">
+
+    <li class="active"><a href="#home" data-toggle="tab">Steps</a></li>
+
+    <li><a href="#profile" data-toggle="tab">Requirements</a></li>
+  
+        <ul class="dropdown-menu">
+            <li><a href="#dropdown1" data-toggle="tab">Action</a></li>
+            <li class="divider"></li>
+            <li><a href="#dropdown2" data-toggle="tab">Another action</a></li>
+        </ul>
+    </li>
+</ul>
+
+
+
+
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade active in" id="home">
+        <p>
+             <?php include('liststeps.php');  ?>
+        </p>
+    </div>
+    <div class="tab-pane fade" id="profile">
+        <p>
+                <?php include('listrequirement.php');  ?>
+        </p>
+    </div>
+    <div class="tab-pane fade" id="dropdown1">
+        <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+    </div>
+    <div class="tab-pane fade" id="dropdown2">
+        <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+    </div>
+</div>
+
+<!-- 
 <div class = "row">
   <div class = "col-lg-12">
-<a href="listrequirement.php?id=<?php echo $pid; ?>">Requirements</a>
-<br/>
-<a href="liststeps.php?id=<?php echo $pid; ?>">STEPS</a>
-<br/>
-<a href="listprocess.php">Back to List Of Process</a>
-<div> <?php echo $message;?> </div>
+<ul id="tabs" class="nav nav-tabs" style = "box-shadow:1px 3px 5px #999;" data-tabs="tabs">
+		<li class="active"><a href="#red" data-toggle="tab"><b style = "color:#eb477d">STEPS</b></a></li>
+        <li><a href="#orange" data-toggle="tab"><b style = "color:#eb477d">REQUIREMENTS</b></a></li>
+        
+        
+    </ul>
+   
+    <div id="my-tab-content" class="tab-content">
+        <div class="tab-pane active" id="red">
+                    <h3>Documents</h3>
+            
+             <?php include('liststeps.php');  ?>
+
+			
+        </div>
+        <div class="tab-pane" id="orange">
+
+			            <h3>Requirements</h3>
+            
+            <?php include('listrequirement.php');  ?>
+        </div>
+
+
+
   </div>
 </div>
-</div>
+</div> -->
 			
             <!-- /.container-fluid -->
 
@@ -270,28 +181,63 @@ else
     <!-- Bootstrap Core JavaScript -->
     <script src="../js/bootstrap.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="../js/plugins/morris/raphael.min.js"></script>
-    <script src="../js/plugins/morris/morris.min.js"></script>
-    <script src="../js/plugins/morris/morris-data.js"></script>	
+
 <script src="../js/jquery.min.js"></script> 
-<script>
-	function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-                $('#blah').attr('src', e.target.result);
-            }
-            
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    
-    $("#imgInp").change(function(){
-        readURL(this);
-    });
-</script>
+
+
+
+<!-- MODAL CREATE PROCESS -->
+
+
+<div id="modal" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+        <h4 class="modal-title">Add Step</h4>
+      </div>
+      <div class="modal-body">
+        
+
+         <form method="POST">
+  <table>
+    <div style="text-align: center;">
+   <label><h4> Steps: </h4></label> 
+   <textarea  class="form-control" name="steps" value="<?php if(isset($_POST['steps'])){ echo htmlentities($_POST['steps']);}?>" required></textarea> 
+   
+     
+   &nbsp; 
+   <div style="margin-top: 20px;">
+    <button type="submit" class="btn btn-fab btn-info mdi-navigation-check" name="add"  /> &nbsp;
+
+   
+  </table>
+  </form>
+<!--   <a href="liststeps.php?id=<?php echo $pid;?>">Return to the List of Steps</a> -->
+
+<!-- <div> <?php echo $message;?> </div> -->
+
+
+       
+<!--         <div style="margin-top: 20px;">
+        <button type="submit" class="btn btn-fab btn-info mdi-navigation-check" name="add"  /> &nbsp;
+  &nbsp; -->
+  
+            <!-- <button class="btn btn-fab btn-danger mdi-navigation-close" data-dismiss="modal"></button> -->
+          </div>
+        </center>
+        
+        </div>
+
+
+
+</form>
+
+
+      </div>
+      <div class="modal-footer">
+
 
 </body>
 

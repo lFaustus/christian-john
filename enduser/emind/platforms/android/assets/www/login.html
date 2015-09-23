@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+	<title>OJTAP - On-the-Job Training Assistance Portal</title>
+	<link type="text/css" rel="stylesheet" href="css/style.css"/>
+	<link type="text/css" rel="stylesheet" href="colors/corporate/corporate.css"/>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'/>
+	<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/base.js"></script>
+	<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		back.initialize();
+	</script>
+</head>
+<body>
+	<div class="pages_container">
+		<div class="form">
+			<div id="login-form">
+				<label>Username:</label>
+                <input type="text" name="username" id="username" value="" class="form_input required" />
+				<label>Password:</label>
+                <input type="password" name="password" id="password" value="" class="form_input" />
+				<br /><br />
+				<input type="button" name="submit" class="form_submit radius4 green green_borderbottom" id="submit" value="Login" onclick="checkMember();" />
+			</div>
+		
+			<script type="text/javascript">
+				goTo();
+			</script>
+		</div>
+		<div class="logo" style="text-align: center;">
+			<a href="#"><img src="images/ojtap_logo.png" style="width:41.66%;"alt="" title="" border="0" /></a>
+			<h5>Not a member yet? Join us! <a href="#" onclick='openURL("http://ojtap.com")'><span class="quote_author" style="color: #60bbce;">www.ojtap.com</span></a></h5>
+		</div>
+	</div>
+</body>
+</html>

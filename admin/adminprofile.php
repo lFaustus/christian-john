@@ -24,7 +24,7 @@ if(isset($_POST['update']))
 				$_POST['image'] = $newimagename;
 				$_POST['id']=$id;
 			updateadmin($_POST);
-			header('location:adminpage.php');
+			header('location:adminprofile.php');
 			exit();
 			}
 		else if($_FILES['file']['type'] == "image/png" || $_FILES['file']['type'] == "image/jpeg" || $_FILES['file']['type'] == "image/jpg" || $_FILES['file']['type'] == "image/gif" )
@@ -50,7 +50,7 @@ if(isset($_POST['update']))
 			$_POST['image'] = $newimagename;
 			$_POST['id']=$id;
 			updateadmin($_POST);
-			header('location:adminpage.php');
+			header('location:landing.php');
 			exit();
 			}
 
@@ -136,6 +136,7 @@ else
 
                      <div style="background-color:transparent; width:400px; text-align:center; padding-top: 100px;">
             <div class="container-fluid">
+              
 								<form action="" method="POST" enctype="multipart/form-data"  name="changer">
     							<br>
 
@@ -143,10 +144,7 @@ else
   						<br>
   					<br>
 
-                  
-
-
-                              <span class="btn btn-info btn-file"> BROWSE
+          <span class="btn btn-info btn-file"> BROWSE
   				<input id="imgInp" type="file" name="file"  accept="image/*"  /> 
                     </span>
 
@@ -156,11 +154,11 @@ else
 
 
 
-		<div style="background-color:transparent; width:400px; text-align:center;" class="col-xs-10">
+		<div style="background-color:transparent; width:360px; text-align:center;" class="col-xs-7">
 			<br>
-            <label>Name</label>
+            <label><h3>Name </h3></label>
             <center>
-			<input class="form-control" id="ex3" type="text"  name="name" id="name" style="width:200px;" value="<?php if(isset($_POST['name'])){ echo 	htmlentities($_POST['name']);}else{ echo 	$info['name'];}?>" required />
+			<input class="form-control" id="ex3" type="text"  name="name" id="name" style="width:px; text-align: center;" value="<?php if(isset($_POST['name'])){ echo 	htmlentities($_POST['name']);}else{ echo 	$info['name'];}?>" required />
 
         </center>
 

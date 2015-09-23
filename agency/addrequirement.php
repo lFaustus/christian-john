@@ -272,26 +272,7 @@ else
 <br/>
 <!-------->
 <div class = "row">
-  <div class = "col-lg-12">
-<form method="POST">
-<table>
-<tr>
-<td><label for="requirement">Requirement</label></td>
-<td><input type="text" name="requirement" id="requirement" value="<?php if(isset($_POST['requirement'])){ echo htmlentities($_POST['requirement']);}?>" required /></td>
-</tr>
-<tr>
-<td><label for="copy">Number of Copy</label></td>
-<td><input type="number" name="copy" id="copy" value="<?php if(isset($_POST['copy'])){ echo htmlentities($_POST['copy']);}?>" min="1" required /></td>
-</tr>
-<tr>
-<td><input type="submit" name="add" value="ADD"></td>
-<td><a href="listrequirement.php?id=<?php echo $pid; ?>">Return to List</a></td>
-</tr>
-</table>
-</form>
-<a href="listrequirement.php?id=<?php echo $pid; ?>">Return to List</a>
-<div> <?php echo $message;?> </div>
-  </div>
+ 
 </div>
 </div>
 			

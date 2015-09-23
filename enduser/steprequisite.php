@@ -2,9 +2,12 @@
 require 'function.php';
 $message="";
 $flag=0;
-$login=$_SESSION['islogin'];
-if($login)
+
+if(!isset($_SESSION['islogin']))
 {
+		header('location:../intro.php');
+	exit;
+}
 $id=$_SESSION['id'];
 $info=user($id);
 $sid=$_GET['id'];
@@ -29,12 +32,6 @@ if(isset($_POST['add']))
 
 }
 
-}
-else
-{
-	header('location:../intro.php');
-	exit;
-}
 
 ?>
 <!DOCTYPE html>
@@ -194,52 +191,7 @@ else
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li class = "active">
-                        <a style = "color:#1ebb90" href="javascript:;" data-toggle="collapse" data-target="#demo"><i class = "fa fa-fw fa-tasks"></i> My Process <i style = "font-size:12px" class="glyphicon glyphicon-chevron-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a title = "Personal Process" style = "color:#1ebb90" href="pending.html"><i class = "fa fa-fw fa-user"></i> Personal</a>
-                            </li>
-                            <li>
-                                <a title = "Agency Process"style = "color:#1ebb90" href="charts.html"><i class = "fa fa-fw fa-building"></i> Agency</a>
-                            </li>
-							
-                        </ul>
-                    </li>
-					<li>
-                        <a style = "color:#1ebb90" href="javascript:;" data-toggle="collapse" data-target="#demo1"><i class="fa fa-fw fa-file"></i> Document</a>
-                    </li>
-                    <li>
-                        <a title = "Subscription" style = "color:#1ebb90" href="#"><i class="fa fa-fw fa-rss"></i> Subscription</a>
-                    </li>
-					<li>
-                       <div style = "margin-left:20px;height:1px;width:180px;background:#1ebb90"></div>
-                    </li>
-					
-                    <li>
-                       <button class = "btn btn-success" style = "margin-left:20px; margin-top:25px"><b>Create Process</b> </button>
-                    </li>
-					
-
-					<li>
-                       <div style = "margin-left:20px;margin-top:25px;height:1px;width:180px;background:#1ebb90"></div>
-                    </li>
-					
-                    <li>
-						 <p style = "color:#fff;margin-left:20px;margin-top:20px" href="#">Recently Updated Process</p>
-					</li>
-					<li>
-						 <a style = "color:#1ebb90;word-break:break-all;" href="#" ><i class="fa fa-fw fa-square"></i> SSS Educational Loan</a>
-					 </li>
-					 <li>
-						 <a title = "Subscription" style = "color:#1ebb90;word-break:break-all" href="#"><i class="fa fa-fw fa-square"></i> PAG-IBIG Housing Loan</a>
-					 </li>
-			    </ul>
-				
-				
-			</div>
+            <?php include('menu.php');?>
 			     
             <!-- /.navbar-collapse -->
         </nav>
@@ -275,17 +227,15 @@ else
 <a href="listrequisite.php?id=<?php echo $sid;?>&pid=<?php echo $pid;?>">Back</a>
 <?php if($st){?>
 <form method="POST">
-<select name="requisite">
-<option value="Corequisite">Corequisite</option>
-<option value="Prerequisite">Prerequisite</option>
-</select>
+<label>STEP PREREQUISITE</label>
 <select name="step">
 <option value="">&nbsp;</option>
 <?php foreach($st as $s){?>
 <?php if($s['stepid'] == $sid)
 {
+	break;
 }
-else if(trapreq($s['stepid']))
+else if(trapreq($s['stepid'],$sid))
 {
 }
 else{?>

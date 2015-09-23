@@ -30,7 +30,7 @@ function adduser($info)
 	$user=trim($info['user']);
 	$pass1=trim($info['pass1']);
 	$bdate=trim($info['bdate']);
-	$status="NPain";
+	$status="NPaid";
 	$image="avatar.png";
 	$i=iduser();
 	if($i)
@@ -310,7 +310,7 @@ function deleterequirement($id)
 function addstep($info)
 {
 	$stepdesc=trim($info['steps']);
-	$stepstatus='hold';
+	$stepstatus='Hold';
 	$step='Active';
 	$pid=trim($info['pid']);
 	$id=$pid;
@@ -432,7 +432,7 @@ function deletesteprequired($id)
 }
 function addsteprequisite($info)
 {
-	$requisite=trim($info['requisite']);
+	$requisite='Prerequisite';
 	$sid=trim($info['sid']);
 	$step=trim($info['step']);
 	$db = database();
@@ -441,12 +441,12 @@ function addsteprequisite($info)
 	$st->execute(array($sid,$requisite,$step));
 	$db=null;
 }
-function trapreq($id)
+function trapreq($id,$sid)
 {
 	$db = database();
-	$sql="SELECT * FROM stepscopre WHERE coprestepid = ?";
+	$sql="SELECT * FROM stepscopre WHERE coprestepid = ? AND stepid = ?";
 	$st=$db->prepare($sql);
-	$st->execute(array($id));
+	$st->execute(array($id,));
 	$s=$st->fetchAll();
 	$db=null;
 	return $s;
@@ -602,33 +602,44 @@ function updatesubcription($info)
 	{
 		date_add($date,date_interval_create_from_date_string("$no year"));
 	}
+	$sub = findsubs($ue);
+	updatesubs($sub['subid']);
 	$end =date_format($date,"Y-m-d");
 	$pay=trim($info['pay']);
-	$total = $p['rate'] * $no;
-	$sub=findsubs($ue);
-	$ttotal = $sub['total'] + $total; 
+	$total = $p['rate'] * $no; 
 	$status = "Active";
 	$db = database();
-	$sql="UPDATE subscription SET planid = ?, numsubscription = ? , totalamout = ?, paypalactno = ?, startdate = ?, enddate=? WHERE subscribedby = ?";
+	$sql="INSERT INTO subscription(subscribedby,planid,numsubscription,totalamount,paypalactno,dateapplied,startdate,enddate,status) VALUES(?,?,?,?,?,?,?,?,?)";
 	$st=$db->prepare($sql);
-	$st->execute(array($pid,$no,$ttotal,$pay,$d,$end,$ue));
+	$st->execute(array($ue,$pid,$no,$total,$pay,$d,$d,$end,$status));
 	$db=null;
 }
 function findsubs($id)
 {
+	$status = "Active";
 	$db = database();
-	$sql="SELECT * FROM subscription WHERE subscribedby = ?";
+	$sql="SELECT * FROM subscription WHERE subscribedby = ? AND status = ?";
 	$st=$db->prepare($sql);
-	$st->execute(array($id));
+	$st->execute(array($id,$status));
 	$sub = $st->fetch();
 	$db=null;
 	return $sub;
+}
+function updatesubs($id)
+{
+	$status = "Deactive";
+	$db = database();
+	$sql="UPDATE subscription SET status = ? WHERE subid = ?";
+	$st=$db->prepare($sql);
+	$st->execute(array($status,$id));
+	$db=null;
+
 }
 function findplan($id)
 {
 	$type='EndUser';
 	$db = database();
-	$sql="SELECT * FROM plan WHERE planid";
+	$sql="SELECT * FROM plan WHERE planid = ?";
 	$st=$db->prepare($sql);
 	$st->execute(array($id));
 	$p = $st->fetch();
@@ -645,4 +656,272 @@ function approveeu($id)
 	$db = null;
 	
 }
+function startrequirement($reqid)
+{
+	$status = "check";
+	$db = database();
+	$sql="UPDATE requirements SET reqstatus = ? WHERE reqid = ?";
+	$st=$db->prepare($sql);
+	$st->execute(array($status,$reqid));
+	$db = null;
+}
+function startsubsteps($id)
+{
+$status = "Active";
+	$db = database();
+	$sql="SELECT * FROM steps WHERE parentstepid = ? AND status = ? ";
+	$st=$db->prepare($sql);
+	$st->execute(array($id,$status));
+	$sp= $st->fetchAll();
+	$db = null;	
+	return $sp;
+}
+function startsteprequire($id)
+{
+	$db = database();
+	$sql = "SELECT r.reqname FROM steprequired sr JOIN requirements r ON sr.reqid = r.reqid WHERE sr.stepid = ?";
+	$st=$db->prepare($sql);
+	$st->execute(array($id));
+	$sr= $st->fetchAll();
+	$db = null;	
+	return $sr;
+}
+function listagency()
+{
+	$status = "Active";
+	$db = database();
+	$sql="SELECT * FROM agency WHERE status = ?";
+	$st=$db->prepare($sql);
+	$st->execute(array($status));
+	$agen= $st->fetchAll();
+	$db = null;	
+	return $agen;
+}
+function listagenprocess($aid)
+{
+	$status = "Active";
+	$db = database();
+	$sql="SELECT * FROM agencyprocess WHERE agencyid = ? AND status = ?";
+	$st=$db->prepare($sql);
+	$st->execute(array($aid,$status));
+	$apro= $st->fetchAll();
+	$db = null;	
+	return $apro;
+}
+function addprocesstemplate($info)
+{
+	$pid = trim($info['pid']);
+	$aid = trim($info['aid']);
+	$id = trim($info['id']);
+	$status = "Active";
+	$db = database();
+	$sql="INSERT INTO subscribedprocess(aprocessid,euid,status) VALUES(?,?,?)";
+	$st=$db->prepare($sql);
+	$st->execute(array($pid,$id,$status));
+	$db = null;
+}
+function listprocesstemplate($euid)
+{
+	$status = "Active";
+	$db = database();
+	$sql="SELECT ap.processname, a.agencyname,a.branch,a.address, ap.aprocessid,sbp.spid FROM subscribedprocess sbp JOIN agencyprocess ap ON sbp.aprocessid = ap.aprocessid JOIN agency a ON ap.agencyid = a.agencyid WHERE sbp.euid = ? AND sbp.status = ? AND ap.status = ?";
+	$st=$db->prepare($sql);
+	$st->execute(array($euid,$status,$status));
+	$pt = $st->fetchAll();
+	$db = null;
+	return $pt;
+}
+function checksubs($pid,$id)
+{
+	$status = "Active";
+		$db = database();
+		$sql="SELECT * FROM subscribedprocess WHERE aprocessid = ? AND euid = ? AND status = ?";
+		$st=$db->prepare($sql);
+		$st->execute(array($pid,$id,$status));
+		$subs = $st->fetchAll();
+		$db=null;
+		return $subs;
+}
+function deletesubsprocess($id)
+{
+	$status = "Deactive";
+	$db=database();
+	$sql="UPDATE subscribedprocess SET status = ? WHERE spid = ?";
+	$st=$db->prepare($sql);
+	$st->execute(array($status,$id));
+	$db=null;
+}
+function listsubscription($id)
+{
+	$db=database();
+	$sql="SELECT s.numsubscription,s.totalamount,s.paypalactno,s.startdate,s.enddate,p.plandesc,p.rate FROM subscription s JOIN plan p ON s.planid = p.planid WHERE s.subscribedby = ? ORDER BY s.subid DESC";
+	$st=$db->prepare($sql);
+	$st->execute(array($id));
+	$sb = $st->fetchAll();
+	$db=null;
+	return $sb;
+}
+function waitingproductivity($id)
+{
+	$status = "Active";
+	$stat = "Waiting";
+	$db=database();
+	$sql = "SELECT COUNT(*) AS ide FROM steps WHERE processid = ? AND stepstatus = ? AND status = ?";
+	$st = $db->prepare($sql);
+	$st->execute(array($id,$stat,$status));
+	$w = $st->fetch();
+	$db=null;
+	return $w;
+}
+function undoneproductivity($id)
+{
+	$status = "Active";
+	$stat = "Hold";
+	$db=database();
+	$sql = "SELECT COUNT(*) AS ide FROM steps WHERE processid = ? AND stepstatus = ? AND status = ?";
+	$st = $db->prepare($sql);
+	$st->execute(array($id,$stat,$status));
+	$w = $st->fetch();
+	$db=null;
+	return $w;
+}
+function doneproductivity($id)
+{
+	$status = "Active";
+	$stat = "Done";
+	$db=database();
+	$sql = "SELECT COUNT(*) AS ide FROM steps WHERE processid = ? AND stepstatus = ? AND status = ?";
+	$st = $db->prepare($sql);
+	$st->execute(array($id,$stat,$status));
+	$w = $st->fetch();
+	$db=null;
+	return $w;
+}
+function productcount($id)
+{
+	$status = "Active";
+	$db=database();
+	$sql = "SELECT COUNT(*) AS ide FROM steps WHERE processid = ? AND status = ?";
+	$st = $db->prepare($sql);
+	$st->execute(array($id,$status));
+	$w = $st->fetch();
+	$db=null;
+	return $w;
+}
+function productreqcount($id)
+{
+		$db=database();
+	$sql = "SELECT COUNT(*) AS ide FROM requirements WHERE processid = ?";
+	$st = $db->prepare($sql);
+	$st->execute(array($id));
+	$w = $st->fetch();
+	$db=null;
+	return $w;
+}
+function productreqcheck($id)
+{
+	$status = "check";
+	$db=database();
+	$sql = "SELECT COUNT(*) AS ide FROM requirements WHERE processid = ? AND reqstatus = ?";
+	$st = $db->prepare($sql);
+	$st->execute(array($id,$status));
+	$w = $st->fetch();
+	$db=null;
+	return $w;
+}
+function productrequncheck($id)
+{
+	$status = "uncheck";
+	$db=database();
+	$sql = "SELECT COUNT(*) AS ide FROM requirements WHERE processid = ? AND reqstatus = ?";
+	$st = $db->prepare($sql);
+	$st->execute(array($id,$status));
+	$w = $st->fetch();
+	$db=null;
+	return $w;
+}
+function ndoneliststep($pid)
+{
+	$status ='Active';
+	$ss = 'DONE';
+	$db=database();
+	$sql="SELECT * FROM steps WHERE processid = ? AND stepstatus != ? AND status = ?";
+	$st=$db->prepare($sql);
+	$st->execute(array($pid,$ss,$status));
+	$eu=$st->fetchAll();
+	$db=null;
+	return $eu;
+}
+function ftagreq($info)
+{
+	$file=trim($info['file']);
+	$reqid=trim($info['rid']);
+	$filetype=trim($info['filetype']);
+	$status="Active";
+	$id=trim($info['id']);
+	$db = database();
+	$sql="INSERT INTO filemedia(file,filetype,tagforid,status,id) VALUES(?,?,?,?,?)";
+	$st=$db->prepare($sql);
+	$st = $st->execute(array($file,$filetype,$reqid,$status,$id));
+	$db=null;
+}
+function listimage($id)
+{
+	$status ="Active";
+	$type= "%image/%";
+	$db = database();
+	$sql = "SELECT * FROM filemedia WHERE id = ? AND status = ? AND filetype LIKE ?";
+	$st = $db->prepare($sql);
+	$st->execute(array($id,$status,$type));
+	$file = $st->fetchAll();
+	$db=null;
+	return $file;
+}
+function listdoc($id)
+{
+	$status ="Active";
+	$type= "%application/%";
+	$type1= "%text%";
+		$db = database();
+	$sql = "SELECT * FROM filemedia WHERE id = ? AND status = ? AND filetype LIKE ? OR filetype LIKE ?";
+	$st = $db->prepare($sql);
+	$st->execute(array($id,$status,$type,$type1));
+	$file = $st->fetchAll();
+	$db=null;
+	return $file;
+}
+function listvideo($id)
+{
+	$type= "%video/%";
+	$status ="Active";
+		$db = database();
+	$sql = "SELECT * FROM filemedia WHERE id = ? AND status = ? AND filetype LIKE ?";
+	$st = $db->prepare($sql);
+	$st->execute(array($id,$status,$type));
+	$file = $st->fetchAll();
+	$db=null;
+	return $file;
+}
+function listaudio($id)
+{
+	$type= "%audio/%";
+	$status ="Active";
+	$db = database();
+	$sql = "SELECT * FROM filemedia WHERE id = ? AND status = ? AND filetype LIKE ?";
+	$st = $db->prepare($sql);
+	$st->execute(array($id,$status,$type));
+	$file = $st->fetchAll();
+	$db=null;
+	return $file;
+}
+function deletefile($id)
+{
+	$status ="Deactive";
+	$db = database();
+	$sql = "UPDATE filemedia SET status = ? WHERE filemediaid = ?";
+	$st = $db->prepare($sql);
+	$st->execute(array($status,$id));
+	$db=null;	
+}
+
 ?>

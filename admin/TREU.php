@@ -53,9 +53,12 @@ else
            
             <!-- Sidebar inclusion -->
   <?php include ('sidebar-admin.php'); ?>
-        <div id="page-wrapper">
-            <div class="container-fluid">
-    
+       
+                <div  class="panel panel-info">
+    <div style="padding-bottom: 60px; text-align: center;" class="panel-heading">
+        <h3 style="padding-top: 30px; "class="panel-title mdi-social-people mdi-4x"><h2> End Users All List</h2></h3>
+    </div>
+    <div style="padding:10px; padding-left: 60px; padding-right: 60px; " class="panel-body">
 
             <div style="margin:30px;">
                   <h1> <b>Total:  <?php echo count($ag);?></b></h1>
@@ -107,7 +110,7 @@ else {
 $message = "Showing Statistics";
 }?>
 
- <div style="background-color: #eee; color:black; padding: 20px; text-align:center; font-size:200%; margin-top: 20px;"> 
+ <div style="background-color: #fff; color:black; padding: 20px; text-align:center; font-size:200%; margin-top: 20px;"> 
 <?php echo $message; ?></div>       
         <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
   

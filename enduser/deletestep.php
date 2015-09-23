@@ -3,6 +3,7 @@ require 'function.php';
 $id=$_GET['id'];
 $pid=$_GET['pid'];
 deletestep($id);
-header("location:liststeps.php?id=$pid");
-exit();
+			echo "<script type='text/javascript'>alert('Deleted Successfully');</script>";
+			header("location:rspage.php?pid=$pid");
+			exit();
 ?>

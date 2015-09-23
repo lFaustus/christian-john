@@ -58,11 +58,17 @@ else
    <!-- //END OF TOP NAV BAR -->
     
                        <?php include ('sidebar-admin.php'); ?>
-                       <div id="page-wrapper">
-                        <div class="container-fluid">
 
-<div style="margin:30px;
-            padding-top: 30px;">
+
+            <div style="margin-left:30px; margin-right:30px;">
+
+                <div  class="panel panel-info">
+    <div style="padding-bottom: 80px; text-align: center;" class="panel-heading">
+ <h3 style="padding-top: 30px; "class="panel-title mdi-communication-contacts mdi-4x"><h2> Deactivated Agencies</h2></h3>
+    </div>
+    <div style="padding:10px; padding-left: 60px; padding-right: 60px; " class="panel-body">
+
+
   
 <?php if($ag){?>
  <div class = "table-responsive">
@@ -105,8 +111,8 @@ else
 <?php foreach($ag as $a){?>
              <tr>  
            
-            <td> <a type="button" href="activatedagencies.php?id=<?php echo $a['agencyid'];?> " class="btn  mdi-action-highlight-remove mdi 10x" style="background-color:white;"></a>
-                
+            <td> <a type="button" href="activatedagencies.php?id=<?php echo $a['agencyid'];?> " style="color: green;" class="mdi-navigation-check mdi-2x"  style="background-color:white;"></a>
+
             </td>  
             <td><?php echo $a['agencyname'];?></td>  
             <td><?php echo $a['branch'];?></td>  
@@ -123,12 +129,12 @@ else
 
     <?php }
 else {
-$message = "No Pending Agencies";
+$message = "No data";
 }?>
 
  
         
- <div style="background-color: #fff; border-bottom: 2px solid #eee; color:black; padding: 20px; text-align:center; font-size:200%; margin-top: 20px; color: #555;"><h3> 
+ <div style="background-color: #fff;  color:black; padding: 20px; text-align:center; font-size:200%; margin-top: 20px; color: #555;"><h3> 
 <?php echo $message; ?></h3></div>        
 
 

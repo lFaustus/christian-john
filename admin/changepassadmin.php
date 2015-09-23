@@ -121,11 +121,16 @@ else
             <input class="form-control" id="ex3" type="password" pattern=".{6,13}" required title="6 to 13 characters" name="pass2" id="pass2" value="<?php if(isset($_POST['pass2'])){ echo htmlentities($_POST['pass2']);}?>" required />
           
             <div style="background-color: #fff; color:red; padding: 20px; text-align:center; font-size:100%;"> <?php echo $message; ?></div>
-     		<input type="submit" class="btn btn-info" value="Update" name="update"></button>
+     		
 
 
-                    <button type="reset" class="btn btn-default btn-raised" value="Reset">Clear Fields</button>
-        </center>
+            <button type="submit" onclick="return confirm('Change password?');" class="btn btn-info btn-fab btn-raised mdi-action-done" name="update"></button>
+            <button type="reset" class="btn btn-danger btn-fab btn-raised mdi-navigation-close" value="Reset"></button>
+   <!--          <input type="submit" class="btn btn-info" value="Update" name="update"></button>
+
+
+                    <button  class="btn btn-default btn-raised" value="Reset">Clear Fields</button>
+        </center> -->
 
         </div>
 <!-- <div><?php echo $message; ?></div> -->
