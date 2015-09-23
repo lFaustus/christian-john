@@ -25,7 +25,7 @@
 <td><?php echo $ctr;?></td>
 <td><?php echo htmlentities($s['stepdesc']);?></td>
 <td><?php echo htmlentities($s['createon']);?></td>
-<td><a href="liststeprequired.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Requirement</a>&nbsp;&nbsp;<a href="listrequisite.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Requisite</a>&nbsp;&nbsp;<a href="listsubsteps.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Substeps</a></td>
+<td><a href="liststeprequired.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Requirement</a>&nbsp;&nbsp;<a href="listrequisite.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Pre-requisite</a>&nbsp;&nbsp;<a href="listsubsteps.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Substeps</a></td>
 </tr><?php $ctr++;}?>  
         </tbody>  
       </table>  

@@ -55,55 +55,55 @@
                     <li style="margin-top:15px;" class = "">
                     <!--      <button class = "btn btn-success" style = "margin-left:40px; margin-top:10px; margin-bottom:10px"><b>Create Process</b> </button>
                           <div style = "margin-left:20px;height:1px;width:180px;background:#3F51B5"></div> -->
-                        <a style = "color:#D3D3D3; font-size: 15px;" href="javascript:;" data-toggle="collapse" data-target="#demo"><i style="color:#eee;" class = "glyphicon glyphicon-user"></i> Agencies <i style = "font-size:12px" class="glyphicon glyphicon-chevron-down"></i></a>
+                        <a style = "color:#fff; font-size: 15px;" href="javascript:;" data-toggle="collapse" data-target="#demo"><i style="color:#eee;" class = "glyphicon glyphicon-user"></i> Agencies <i style = "font-size:12px" class="glyphicon glyphicon-chevron-down"></i></a>
                         <ul id="demo" class="collapse">
 
                             <li>
-                                <a title = "Personal Process" style = "color:#B0C4DE" href="pendingagency.php"><i class = "glyphicon glyphicon-question-sign"></i> Pending</a>
+                                <a title = "Personal Process" style = "color:#eee" href="pendingagency.php"><i class = "glyphicon glyphicon-question-sign"></i> Pending</a>
                             </li>
                             <li>
-                                <a title = "Agency Process"style = "color:#B0C4DE" href="deactivatedagencies.php"><i class = "glyphicon glyphicon-remove-sign"></i> Deactivated</a>
+                                <a title = "Agency Process"style = "color:#eee" href="deactivatedagencies.php"><i class = "glyphicon glyphicon-remove-sign"></i> Deactivated</a>
                             </li>
                             <li>
-                                <a title = "Agency Process"style = "color:#B0C4DE" href="npagencies.php"><i class = "glyphicon glyphicon-minus-sign"></i> Not Yet Subscribed</a>
+                                <a title = "Agency Process"style = "color:#eee" href="npagencies.php"><i class = "glyphicon glyphicon-minus-sign"></i> Not Yet Subscribed</a>
                             </li>
 							<li>
-                                <a title = "Agency Process"style = "color:#B0C4DE" href="activeagency.php"><i class = "glyphicon glyphicon-ok-sign"></i> Active</a>
+                                <a title = "Agency Process"style = "color:#eee" href="activeagency.php"><i class = "glyphicon glyphicon-ok-sign"></i> Active</a>
                             </li>
                         </ul>
                     </li>
 
                           <li>
-                       <div style = "margin-left:20px;height:1px;width:180px;background:#333"></div>
+                       <div style = "margin-left:20px;height:1px;width:180px;background:skyblue"></div>
                     </li>
                      <li class = "">
-                        <a style = "color:#D3D3D3; font-size: 15px;" href="javascript:;" data-toggle="collapse" data-target="#demo1"><i style="color:#eee;" class = "glyphicon glyphicon-user"></i> Applicants <i style = "font-size:12px" class="glyphicon glyphicon-chevron-down"></i></a>
+                        <a style = "color:#fff; font-size: 15px;" href="javascript:;" data-toggle="collapse" data-target="#demo1"><i style="color:#eee;" class = "glyphicon glyphicon-user"></i> Applicants <i style = "font-size:12px" class="glyphicon glyphicon-chevron-down"></i></a>
                         <ul id="demo1" class="collapse">
                             <li>
-                                <a title = "Personal Process" style = "color:#B0C4DE" href="euactive.php"><i class = "glyphicon glyphicon-ok-sign"></i> Active</a>
+                                <a title = "Personal Process" style = "color:#eee" href="euactive.php"><i class = "glyphicon glyphicon-ok-sign"></i> Active</a>
                             </li>
                             <li>
-                                <a title = "Agency Process"style = "color:#B0C4DE" href="deactivatedenduser.php"><i class = "glyphicon glyphicon-remove-sign"></i> Deactivated</a>
+                                <a title = "Agency Process"style = "color:#eee" href="deactivatedenduser.php"><i class = "glyphicon glyphicon-remove-sign"></i> Deactivated</a>
                             </li>
                              <li>
-                                <a title = "Agency Process"style = "color:#B0C4DE" href="endusernys.php"><i class = "glyphicon glyphicon-minus-sign"></i> Not Yet Subscribed</a>
+                                <a title = "Agency Process"style = "color:#eee" href="endusernys.php"><i class = "glyphicon glyphicon-minus-sign"></i> Not Yet Subscribed</a>
                             </li>
 
                         </ul>
                     </li>
 
                           <li>
-                       <div style = "margin-left:20px;height:1px;width:180px;background:#333"></div>
+                       <div style = "margin-left:20px;height:1px;width:180px;background:skyblue"></div>
                     </li>
 			
                 <li class = "">
-                        <a style = "color:#D3D3D3; font-size: 15px;" href="javascript:;" data-toggle="collapse" data-target="#demo2"><i style="color:#eee;" class = "glyphicon glyphicon-usd"></i> Plans and Subscription <i style = "font-size:12px" class="glyphicon glyphicon-chevron-down"></i></a>
+                        <a style = "color:#fff; font-size: 15px;" href="javascript:;" data-toggle="collapse" data-target="#demo2"><i style="color:#eee;" class = "glyphicon glyphicon-usd"></i> Plans and Subscription <i style = "font-size:12px" class="glyphicon glyphicon-chevron-down"></i></a>
                         <ul id="demo2" class="collapse">
                             <li>
-                                <a title = "Personal Process" style = "color:#B0C4DE" href="listplan.php"><i class = "mdi-action-view-list"></i> Plan List</a>
+                                <a title = "Personal Process" style = "color:#eee" href="listplan.php"><i class = "mdi-action-view-list"></i> Plan List</a>
                             </li>
                             <li>
-                                <a title = "Agency Process"style = "color:#B0C4DE" href="planreports.php"><i class = "mdi-action-receipt"></i> Reports</a>
+                                <a title = "Agency Process"style = "color:#eee" href="planreports.php"><i class = "mdi-action-receipt"></i> Reports</a>
                             </li>
                             
                               
@@ -113,30 +113,30 @@
 
 
 					<li>
-                       <div style = "margin-left:20px;height:1px;width:180px;background:#333"></div>
+                       <div style = "margin-left:20px;height:1px;width:180px;background: skyblue"></div>
                     </li>
 
     
 
           <li class = "">
-             <a style = "color:#D3D3D3; font-size: 15px;" href="javascript:;" data-toggle="collapse" data-target="#admintools"><i class = "glyphicon glyphicon-wrench"></i> Admin Tools <i style = "font-size:12px" class="glyphicon glyphicon-chevron-down"></i></a>
+             <a style = "color:#fff; font-size: 15px;" href="javascript:;" data-toggle="collapse" data-target="#admintools"><i class = "glyphicon glyphicon-wrench"></i> Admin Tools <i style = "font-size:12px" class="glyphicon glyphicon-chevron-down"></i></a>
              <ul id="admintools" class="collapse">
                  <li>
-                     <a title = "Personal Process" style = "color:#B0C4DE" href="addadmin.php"><i class = "fa fa-fw fa-user"></i>Add User Admin</a>
+                     <a title = "Personal Process" style = "color:#eee" href="addadmin.php"><i class = "fa fa-fw fa-user"></i>Add User Admin</a>
                  </li>
 
                  <li>
-                     <a title = "Personal Process" style = "color:#B0C4DE" href="reports.php"><i class = "fa fa-fw fa-user"></i>Reports</a>
+                     <a title = "Personal Process" style = "color:#eee" href="reports.php"><i class = "fa fa-fw fa-user"></i>Reports</a>
                  </li>
                  <li>
-                                <a title = "Agency Process"style = "color:#B0C4DE" href="TREU.php"><i class = "fa fa-fw fa-building"></i> Total Registered End Users</a>
+                                <a title = "Agency Process"style = "color:#eee" href="TREU.php"><i class = "fa fa-fw fa-building"></i> Total Registered End Users</a>
                             </li>
              </ul>
          </li>
 
 
             <li>
-                       <div style = "margin-left:20px;height:1px;width:180px;background:#333"></div>
+                       <div style = "margin-left:20px;height:1px;width:180px;background:skyblue"></div>
                     </li>
 
                         <li>

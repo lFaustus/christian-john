@@ -133,6 +133,7 @@ if(isset($_POST['search']))
            <th>Created On</th>
            <th>Downloaded From</th>
            <th>Date Modified</th>
+           <th>More</th>
          
           </tr>  
         </thead>  
@@ -147,6 +148,7 @@ if(isset($_POST['search']))
            <th>Created On</th>
            <th>Downloaded From</th>
            <th>Date Modified</th>
+           <th>More</th>
          
           </tr>  
         </tfoot>
@@ -177,6 +179,7 @@ if(isset($_POST['search']))
 <td><?php echo htmlentities($p['createdon']);?></td>
 <td><?php echo htmlentities($p['agencycopiedfrom']);?></td>
 <td><?php echo htmlentities($p['datemodified']);?></td> 
+<td><a href="liststeps.php">Steps <a href="listrequirement.php">  | Requirements</a></td>
           </tr>  
           <?php }?>
         </tbody>

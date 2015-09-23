@@ -23,10 +23,14 @@ $requirement=listrequirement($pid);
         }
         else
         {
+          $_POST['pid'] = $pid;
             addstep($_POST);
-            echo "<script type='text/javascript'>alert('Step HAS BEEN Added');</script>";
-            header("location:rspage.php?id=$pid");
-            exit();
+      echo "<script type='text/javascript'>
+      alert('The Step Has Been Added!');
+      window.location='rspage.php?id=".$pid."';
+      </script>";
+            
+            
             
         }
     }
@@ -45,7 +49,7 @@ $requirement=listrequirement($pid);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Agency - ENDINMIND</title>
+    <title>User - ENDINMIND</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">

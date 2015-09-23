@@ -12,27 +12,7 @@ $info=user($id);
 $agen = listagency();
 $edate = findsubs($id);
 $no=0;
-/*if(isset($_POST['add']))
-{	
-	if(trim($_POST['no'])== false)
-	{
-		$message="Enter a Number of Subscription";
-	}
-	else if(trim($_POST['pay'])== false)
-	{
-		$message="Enter a Paypal Account";
-	}
-	else if(!filter_var(trim($_POST['pay']), FILTER_VALIDATE_EMAIL))
-	{
-		$message="INVALID FORMAT OF PAYPAL ACCOUNT EXAMPLE: example@yahoo.com";
-	}
-	else
-	{
-	header('location:loginuser.php');
-	exit;
 
-	}
-}*/
 ?>
 
 
@@ -48,7 +28,7 @@ $no=0;
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>User Login - ENDINMIND</title>
+    <title>List Agencies - ENDINMIND</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -108,18 +88,29 @@ $no=0;
       <?php if(strtotime($d) >= strtotime($sss['enddate'])){?>
   
   <?php }else {?>
-  <div>
-  <a href="agenlistprocess.php?aid=<?php echo $a['agencyid'];?>"> 
-  <img class="img-circle" width="50px" height="50px" src="../agency/files/<?php echo $a['logo'];?>" /><br/><br>
-  <h3>Agency Name:<?php echo $a['agencyname'];?> <br/></h3>
+ 
+  
+  
+
+ 
+ 
+  <div style="padding-left: 200px; padding-right: 200px;">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title"><a href="agenlistprocess.php?aid=<?php echo $a['agencyid'];?>">
+        <img class="img-circle" width="100px" height="100px" src="../agency/files/<?php echo $a['logo'];?>" /></h3>
+    </div>
+    <div class="panel-body">
+          <h3>Agency Name:<?php echo $a['agencyname'];?> <br/></h3>
   Branch: <?php echo $a['branch'];?> <br/>
   Address: <?php echo $a['address'];?>
   </a>
-  </div>
+    </div>
+</div>
+</div>
+ <?php }?>
   <?php }?>
   <?php }?>
-  <?php }?>
-
   
     </div>
 </div>
