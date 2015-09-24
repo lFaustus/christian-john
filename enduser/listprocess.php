@@ -127,11 +127,11 @@ if(isset($_POST['search']))
           <tr>  
             <th><center>Actions</center></th>
             <th>Process Name</th>  
-            <th>Schedule Type</th>  
+ 
             <th>Recurrence</th>  
             <th>No. of Recurrence</th>  
            <th>Created On</th>
-           <th>Downloaded From</th>
+<!--            <th>Downloaded From</th> -->
            <th>Date Modified</th>
            <th>More</th>
          
@@ -142,11 +142,11 @@ if(isset($_POST['search']))
         <tr>  
             <th><center>Actions</center></th>
             <th>Process Name</th>  
-            <th>Schedule Type</th>  
+
             <th>Recurrence</th>  
             <th>No. of Recurrence</th>  
            <th>Created On</th>
-           <th>Downloaded From</th>
+       <!--     <th>Downloaded From</th> -->
            <th>Date Modified</th>
            <th>More</th>
          
@@ -172,14 +172,14 @@ if(isset($_POST['search']))
 
 
 </td>
-<td><a href="rspage.php?id=<?php echo $p['euprocessid'];?>"><?php echo htmlentities($p['processname']);?></a></td>
+<td><?php echo htmlentities($p['processname']);?></td>
 <td><?php echo htmlentities($p['schedtype']);?></td>
 <td><?php echo htmlentities($p['recurrence']);?></td>
-<td><?php echo htmlentities($p['numrec']);?></td>
+<!-- <td><?php echo htmlentities($p['numrec']);?></td> -->
 <td><?php echo htmlentities($p['createdon']);?></td>
-<td><?php echo htmlentities($p['agencycopiedfrom']);?></td>
+<!-- <td><?php echo htmlentities($p['agencycopiedfrom']);?></td> -->
 <td><?php echo htmlentities($p['datemodified']);?></td> 
-<td><a href="liststeps.php">Steps <a href="listrequirement.php">  | Requirements</a></td>
+<td><a href="liststeps.php?id=<?php echo $p['euprocessid'];?>">Steps <a href="listrequirement.php?id=<?php echo $p['euprocessid'];?>">Requirements</a></td>
           </tr>  
           <?php }?>
         </tbody>

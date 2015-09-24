@@ -57,7 +57,7 @@ if(isset($_POST['next']))
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Agency - ENDINMIND</title>
+    <title>User Process - ENDINMIND</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -103,8 +103,8 @@ if(isset($_POST['next']))
 
 
                 <div  class="panel panel-info">
-    <div style="padding-bottom: 50px; text-align: center;" class="panel-heading">
-  <h3 style="padding-top: 30px; "class="panel-title mdi-action-assignment mdi-4x"><h2> Requirements</h2></h3>
+    <div style="padding-bottom: 5px; text-align: center;" class="panel-heading">
+  <h3 style="padding-top: 5px; "><h2> User Process</h2></h3>
     </div>
     <div style="padding:10px; padding-left: 60px; padding-right: 60px; padding-bottom: 50px;" class="panel-body">
 
@@ -122,7 +122,7 @@ if(isset($_POST['next']))
 <div style="padding-left: 200px; padding-right: 200px;">
 
 
-<div style="background-color: yellow;" class="panel panel-default">
+<div style="background-color: skyblue;" class="panel panel-default">
     <div class="panel-body">
 
     

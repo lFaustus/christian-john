@@ -243,6 +243,68 @@ $requirement=listrequirement($pid);
       <div class="modal-footer">
 
 
+
+
+
+
+
+        
+
+
+<!-- MODAL CREATE PROCESS -->
+
+
+<div id="modal1" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+        <h4 class="modal-title">Add Step</h4>
+      </div>
+      <div class="modal-body">
+        
+
+         <form method="POST">
+  <table>
+    <div style="text-align: center;">
+   <label><h4> Steps: </h4></label> 
+   <textarea  class="form-control" name="steps" value="<?php if(isset($_POST['steps'])){ echo htmlentities($_POST['steps']);}?>" required></textarea> 
+   
+     
+   &nbsp; 
+   <div style="margin-top: 20px;">
+    <button type="submit" class="btn btn-fab btn-info mdi-navigation-check" name="add"  /> &nbsp;
+
+   
+  </table>
+  </form>
+<!--   <a href="liststeps.php?id=<?php echo $pid;?>">Return to the List of Steps</a> -->
+
+<!-- <div> <?php echo $message;?> </div> -->
+
+
+       
+<!--         <div style="margin-top: 20px;">
+        <button type="submit" class="btn btn-fab btn-info mdi-navigation-check" name="add"  /> &nbsp;
+  &nbsp; -->
+  
+            <!-- <button class="btn btn-fab btn-danger mdi-navigation-close" data-dismiss="modal"></button> -->
+          </div>
+        </center>
+        
+        </div>
+
+
+
+</form>
+
+
+      </div>
+      <div class="modal-footer">
+
+
+
 </body>
 
 </html>
