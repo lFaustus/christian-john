@@ -1,4 +1,4 @@
- <div class = "table-responsive">
+ <div style="height: 500px; padding: auto;"class = "table-responsive">
 
  
      <?php if($image){?>

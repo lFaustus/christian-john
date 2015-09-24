@@ -31,8 +31,11 @@ $pid=$_GET['pid'];
 		{
 			$_POST['pid'] = $pid;
 			addrequirements($_POST);
-			echo "<script type='text/javascript'>alert('Requirement HAS BEEN Added');</script>";
-			header("location:rspage.php?pid=$pid");
+			echo "<script type='text/javascript'>alert('Requirement HAS BEEN Added');
+
+            window.location='rspage.php?id=$pid';
+            </script>";
+			
 			exit();
 			
 		}
@@ -40,6 +43,9 @@ $pid=$_GET['pid'];
 
 
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,7 +57,7 @@ $pid=$_GET['pid'];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>User - ENDINMIND</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -59,188 +65,68 @@ $pid=$_GET['pid'];
     <!-- Custom CSS -->
     <link href="../css/sb-admin.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link href="../css/plugins/morris.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="dist/css/material.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/material.min.css">
+
+    <!-- MATERIAL CSS -->
+  <!--   <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/> -->
+
+    <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- ADMIN CSS -->
+    <link href="css/admin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
      <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	<!-- Data Tables -->
-	<link rel="stylesheet" href="../css/jquery.dataTables.min.css">
-	<script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
-
 </head>
+
 
 <body>
 
+
+   
     <div id="wrapper">
+<!-- TOP NAV BAR -->
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <b style = "color:#eb477d;font-size:26px" class="navbar-brand" href="index.html">ENDINMIND</b>
-            </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu message-dropdown">
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img class="img-rounded" width="16" height="16" src="files/<?php echo $info['image'];?>" />
-                    
-					<?php echo $info['firstname']." ".$info['mi'].". ".$info['lastname']; ?> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="adminprofile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="changepasseu.php"><i class="fa fa-fw fa-gear"></i> Change Password</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="logoutuser.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <?php include('menu.php');?>
-			     
-            <!-- /.navbar-collapse -->
-        </nav>
-		   
+   <?php include ('nav.php'); ?>
 
-        <div id="page-wrapper">
+   <!-- //END OF TOP NAV BAR -->
+    
+           
+            <!-- Sidebar inclusion -->
+  <?php include ('menu.php'); ?>
 
-            <div class="container-fluid">
-             <!-- Page Heading -->
-      <br/>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class = "well">
-							<h1 style = "color:#eb477d;text-shadow: 3px 1px 2px #999">
-								Choose Page
-								<!-- <small>Statistics Overview</small> -->
-							</h1>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
+ 
+ <div style="margin-left:30px; margin-right:30px;">
 
 
+                <div  class="panel panel-info">
+    <div style="padding-bottom: 50px; text-align: center;" class="panel-heading">
+  <h3 style="padding-top: 30px; "class="panel-title mdi-action-assignment mdi-4x"><h2> Add Requirement</h2></h3>
+    </div>
+    <div style="padding:10px; padding-left: 60px; padding-right: 60px; padding-bottom: 50px;" class="panel-body">
 
-<br/>
-<!-------->
-<div class = "row">
-  <div class = "col-lg-12">
+
+<div style="padding-left: 300px; padding-right: 300px;">
+<div style="text-align: center;">
 <form method="POST">
-<table>
-<tr>
-<td><label for="requirement">Requirement</label></td>
-<td><input type="text" name="requirement" id="requirement" value="<?php if(isset($_POST['requirement'])){ echo htmlentities($_POST['requirement']);}?>" required /></td>
-</tr>
-<tr>
-<td><label for="copy">Number of Copy</label></td>
-<td><input type="number" name="copy" id="copy" value="<?php if(isset($_POST['copy'])){ echo htmlentities($_POST['copy']);}?>" min="1" required /></td>
-</tr>
-<tr>
-<td><input type="submit" name="add" value="ADD"></td>
-<td><a href="listrequirement.php?id=<?php echo $pid; ?>">Return to List</a></td>
-</tr>
-</table>
+ 
+ 
+ <label for="requirement">Requirement</label> 
+ <input class="form-control" type="text" name="requirement" id="requirement" value="<?php if(isset($_POST['requirement'])){ echo htmlentities($_POST['requirement']);}?>" required /> 
+ 
+ 
+ <label for="copy">Number of Copy</label> 
+ <input class="form-control" type="number" name="copy" id="copy" value="<?php if(isset($_POST['copy'])){ echo htmlentities($_POST['copy']);}?>" min="1" required /> 
+ 
+ <br>
+         <button type="submit"  class="btn btn-info btn-fab btn-raised mdi-action-done" name="add"></button>
+ <!-- <input type="submit" name="add" value="ADD">  -->
+ <a href="listrequirement.php?id=<?php echo $pid; ?>">Return to List</a> 
+ 
+
 </form>
 <a href="listrequirement.php?id=<?php echo $pid; ?>">Return to List</a>
 <div> <?php echo $message;?> </div>
