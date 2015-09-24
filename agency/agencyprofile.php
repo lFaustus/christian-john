@@ -190,7 +190,7 @@ else
  
 </form>
 
-
+  <a onclick="return confirm('Are you sure you want to deactivate?')" class="btn btn-danger btn-raised" href="deleteprofile.php?id=<?php echo $info['agencyid']?>">Deactivate Account</a> 
 </div>
 <div> <?php echo $message;?> </div>
             </div>

@@ -701,4 +701,13 @@ function listsubscription($id)
 	$db=null;
 	return $sb;
 }
+function deleteuser($id)
+{
+	$status = "Deactive";
+	$db	=	database();
+	$sql = "UPDATE agency SET status = ? WHERE euid = ?";
+	$st	= $db->prepare($sql);
+	$st->execute(array($status,$id));
+	$db = null;
+}
 ?>
