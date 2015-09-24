@@ -105,7 +105,7 @@ function updateagency($info)
 	$contactperson=trim($info['contactperson']);
 	$contactpersonno=trim($info['contactpersonno']);
 	$emailadd=trim($info['emailadd']);
-		$emailadd=trim($info['branch']);
+		$branch=trim($info['branch']);
 	$img = trim($info['logo']);
 	$id=trim($info['id']);
 
@@ -224,7 +224,6 @@ function addrequirements($info)
 	$requirement = trim($info['requirement']);
 	$copy = trim($info['copy']);
 	$createdon=date('y-m-d');
-
 	$notes='';
 	$status='unchecked';
 	$pid=trim($info['pid']);

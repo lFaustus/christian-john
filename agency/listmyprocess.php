@@ -7,7 +7,7 @@ $id=$_SESSION['id'];
 $info=agency($id);
 $message="";
 $process=listprocess($id);
-$expire =findsubs($id);
+
 if(isset($_POST['add']))
 {   
     if(trim($_POST['processname'])== false)
@@ -114,8 +114,7 @@ else
             <thead>  
           <tr>  
             <th><center>Action</center></th>
-            <th>Process Name</th> 
-            <th> More </th> 
+            <th>Process Name</th>  
         
           </tr>  
         </thead>  
@@ -123,8 +122,7 @@ else
         <tfoot>
               <tr>  
             <th><center>Action</center></th>
-            <th>Process Name</th>
-            <th> More </th>
+            <th>Process Name</th>  
             
         </tfoot>
  
@@ -136,23 +134,16 @@ else
              <tr>  
            
                 <td>
-           <a type="button" href="updateprocess.php?id=<?php echo $p['aprocessid']; ?> " style="color: skyblue;" class="mdi-content-create" style="background-color:white;"></a>
-
-           <a href="deleteprocess.php?id=<?php echo $p['aprocessid']; ?>" onclick = "return confirm('Delete?')" style="color: red;" class="mdi-content-clear" ></a>
+                <a href="preview.php?pid=<?php echo $p['aprocessid']?>">preview</a>
 
                 </td>
 
 
             <td>
-            <a style="color: black;" ><?php echo htmlentities($p['processname']);?></a>
+            <a style="color: #FF69B4" href="rspage.php?id=<?php echo $p['aprocessid'];?>"><?php echo htmlentities($p['processname']);?></a>
              </td>
-            <td>
-              <a href="liststeps.php?id=<?php echo $p['aprocessid']; ?>" >Steps</a>  | <a href="listrequirement.php?id=<?php echo $p['aprocessid']; ?>" >Requirements</a>
-            </td>
+            
           </tr>  
-        
-
-          </td>
           <?php }?>
         </tbody>
     </table>

@@ -116,3 +116,6 @@ if(isset($_POST['add']))
 </form>
 <?php }else{$message="No PLans Yet";}?>
 <div> <?php echo $message;?> </div>
+</div>
+</div>
+</div>

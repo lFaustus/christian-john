@@ -17,10 +17,11 @@
                 <li class="dropdown">
                    <a style="color:#eee; padding-top: 20px; padding-bottom:20px; " href="#" class="dropdown-toggle" data-toggle="dropdown"  class="badge"> <i class="fa fa-bell"> </i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
+                        <?php $expire =findsubs($id);?>
                         <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                            <a href="#">Account Will Expire On : <span class="label label-default"><?php echo $expire['enddate'];?></span></a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
                         </li>
                         <li>
@@ -34,11 +35,11 @@
                         </li>
                         <li>
                             <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
+                        </li> -->
                         <li class="divider"></li>
-                        <li>
+<!--                         <li>
                             <a href="#">View All</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
 
@@ -59,7 +60,7 @@
                             <a href="agencyprofile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                            <a href="updateagencyprofile.php"><i class="mdi-action-settings"></i> Update Profile</a>
                         </li>
                         <li>
                             <a href="changepassagency.php"><i class="fa fa-fw fa-gear"></i> Change Password</a>
