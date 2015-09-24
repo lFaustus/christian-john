@@ -118,10 +118,14 @@ if(isset($_POST['search']))
 	  $rtotal =productreqcount($p['euprocessid']);
 	  $uncheck=productrequncheck($p['euprocessid']);
 	  $check=productreqcheck($p['euprocessid']);?>
-          <div> <a href="startrequirements.php?pid=<?php echo $p['euprocessid']; ?>"> Process Name: <?php echo htmlentities($p['processname']);?><br/>
+          <div> <a href="startrequirements.php?pid=<?php echo $p['euprocessid']; ?>">
+
+    <div class="well well-lg">
+  
+           Process Name: <?php echo htmlentities($p['processname']);?><br/>
             Copied From : <?php echo htmlentities($p['agencycopiedfrom']);?> </a>
             <hr/>
-            <h3>Productivity</h3>
+        
             <h4>STEPS</h4>
             <p>WAITING: <?php echo $waiting['ide'];?>/<?php echo $total['ide'];?> &nbsp;&nbsp;&nbsp;&nbsp; DONE : <?php echo $done['ide'];?>/<?php echo $total['ide'];?> &nbsp;&nbsp;&nbsp;&nbsp; UNDONE : <?php echo $undone['ide'];?>/<?php echo $total['ide'];?></p>
             <h4>REQUIREMENTS</h4>
@@ -130,7 +134,7 @@ if(isset($_POST['search']))
             <a class="btn btn-info btn-danger" onclick="return confirm('Are You Sure?')" href="deleteprocess.php?id=<?php echo $p['euprocessid']; ?>">DELETE</a> </div>
           <br/>
           <br/>
-          <br/>
+          <br/> </div>
           <?php }?>
           <?php }
 else {

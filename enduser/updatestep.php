@@ -96,7 +96,7 @@ $step=step($sid);
     </div>
     <div style="padding:10px; padding-left: 60px; padding-right: 60px; padding-bottom: 50px;" class="panel-body">
 
- <a href="rspage.php?id=<?php echo $pid; ?>" class="btn btn-default btn-fab btn-raised mdi-hardware-keyboard-backspace"></a>
+ <a href="liststeps.php?id=<?php echo $pid; ?>" class="btn btn-default btn-fab btn-raised mdi-hardware-keyboard-backspace"></a>
 
 
 <div style="text-align: center;">

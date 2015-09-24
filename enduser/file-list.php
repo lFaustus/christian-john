@@ -1,16 +1,24 @@
 <?php
 require 'function.php';
+$message="";
+$flag=0;
+
 if(!isset($_SESSION['islogin']))
 {
-
-	header('location:../intro.php');
+		header('location:../intro.php');
 	exit;
 }
 $id=$_SESSION['id'];
 $info=user($id);
-$aid = $_GET['aid'];
-$aprocess = listagenprocess($aid);
+
+
+$image = listimage($id);
+$doc = listdoc($id);
+$video = listvideo($id);
+$audio = listaudio($id);
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,53 +61,52 @@ $aprocess = listagenprocess($aid);
 
 
    
-    <div id="wrapper">
-<!-- TOP NAV BAR -->
+<!--     <div id="wrapper"> -->
 
-   <?php include ('nav.php'); ?>
-
-   <!-- //END OF TOP NAV BAR -->
-    
-           
-            <!-- Sidebar inclusion -->
-  <?php include ('menu.php'); ?>
-
+<div class="container-fluid">
  
- <div style="margin-left:30px; margin-right:30px;">
+ <div style="padding: auto;">
 
 
                 <div  class="panel panel-info">
     <div style="padding-bottom: 50px; text-align: center;" class="panel-heading">
-  <h3 style="padding-top: 30px; "class="panel-title mdi-action-assignment mdi-4x"><h2> List of Agency Process</h2></h3>
+  <h3 style="padding-top: 30px; "class="panel-title mdi-action-assignment mdi-4x"><h2>List of Files</h2></h3>
     </div>
     <div style="padding:10px; padding-left: 60px; padding-right: 60px; padding-bottom: 50px;" class="panel-body">
 
 
 
-<br/>
 
-<div class = "row">
-  <div class = "col-lg-12">
-  <?php if($aprocess){?>
-  <?php foreach($aprocess as $apro){?>
-  <?php $val = checksubs($apro['aprocessid'],$id);?>
-  <?php if($val){}else{?>
-  <div>
-
-    <div style="text-align: center" class="alert alert-dismissable alert-success">
-      <h3> <?php echo $apro['processname'];?> </h4> <br> <a class="mdi-action-get-app mdi-3x" href="addprocesstemplate.php?pid=<?php echo $apro['aprocessid'];?>&aid=<?php echo $aid?>"></a></div> </div>
-  <?php }}?>
-  <?php }else
+      <ul class="nav nav-tabs" style="padding-bottom: 15px;">
+    <li ><a href="#image" data-toggle="tab">Image</a></li>
+    <li><a href="#documents" data-toggle="tab">Documents</a></li>
+        <li><a href="#video" data-toggle="tab">Video</a></li>
+            <li><a href="#audio" data-toggle="tab">Audio</a></li>
+          </ul>
 
 
-  { 
+          <div  id="myTabContent" class="tab-content">
+    <div class="tab-pane fade active in" id="image">
 
-    echo "<div style='text-align: center; color: red; '><h4>This agency has not yet created a process!";}?>
+        <p> <?php include('listimage.php');?></p>
     </div>
-</div>
 
-                
-            </div>
+    <div class="tab-pane fade" id="documents">
+        <p>  <?php include('listdoc.php');  ?></p>
+    </div>
+
+    <div class="tab-pane fade" id="video">
+        <p>   <?php include('listvideo.php');  ?></p>
+    </div>
+	
+   <div class="tab-pane fade" id="audio">
+        <p>   <?php include('listaudio.php');  ?></p>
+    </div>
+
+
+  </div>
+</div>
+</div>
 			
             <!-- /.container-fluid -->
 
@@ -114,10 +121,9 @@ $aprocess = listagenprocess($aid);
     <!-- Bootstrap Core JavaScript -->
     <script src="../js/bootstrap.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="../js/plugins/morris/raphael.min.js"></script>
-    <script src="../js/plugins/morris/morris.min.js"></script>
-    <script src="../js/plugins/morris/morris-data.js"></script>
+
+<script src="../js/jquery.min.js"></script> 
+
 
 </body>
 

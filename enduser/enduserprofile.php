@@ -101,7 +101,7 @@ $info=user($id);
    </div>
     </div>
     
-    <a onclick="return confirm('Are you sure you want to deactivate?')" class="btn btn-danger btn-raised" href="deleteprofile.php">Deactivate Account</a> 
+    <a onclick="return confirm('Are you sure you want to deactivate?')" class="btn btn-danger btn-raised" href="deleteprofile.php?id=<?php echo $info['euid']?>">Deactivate Account</a> 
 
 </div>
 
