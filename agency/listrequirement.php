@@ -180,7 +180,7 @@ else
 
     <?php }
 else {
-$message = "No Data";
+$message = "No Requirement";
 }?>
 
 
@@ -238,6 +238,7 @@ $(document).ready( function () {
 
 <label for="requirement"><h4>Requirement</h4></label>
 <input class="form-control" type="text" name="requirement" id="requirement" value="<?php if(isset($_POST['requirement'])){ echo htmlentities($_POST['requirement']);}?>" required />
+
 
 
 <label for="copy"><h4>Number of Copy</h4></label>

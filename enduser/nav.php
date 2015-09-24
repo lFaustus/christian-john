@@ -12,7 +12,7 @@
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                     <a style="color:#eee; padding-top: 20px; padding-bottom:20px;"  href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu message-dropdown">
                         <li class="message-preview">
@@ -46,7 +46,6 @@
                             </a>
                         </li>
                         <li class="message-preview">
-                            <a href="#">
                                 <div class="media">
                                     <span class="pull-left">
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
@@ -63,13 +62,15 @@
                         <li class="message-footer">
                             <a href="#">Read All New Messages</a>
                         </li>
-                    </ul>
-                </li>
+                    </ul><a href="#">
+                            
+                </li> -->
                 <li class="dropdown">
                      <a style="color:#eee; padding-top: 20px; padding-bottom:20px;" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
+                        <?php $expire= findsubs($id);?>
                         <li>
-                            <a href="#">Youre Account will Expire on: <span class="label label-default"><?php echo $edate['enddate'];?></span></a>
+                            <a href="#">Youre Account will Expire on: <span class="label label-default"><?php echo $expire['enddate'];?></span></a>
                         </li>
                         <li>
                             <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>

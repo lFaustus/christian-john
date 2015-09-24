@@ -24,7 +24,7 @@ if($_FILES['file']['name'] == "")
 }
 else
 {
-	if (isset($_REQUEST['file']))
+	if (isset($_FILES['file']))
 {
 if($_FILES['file']["size"] > 50000)
 {

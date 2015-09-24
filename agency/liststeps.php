@@ -9,6 +9,7 @@ $id=$_SESSION['id'];
 $info=agency($id);
 $pid=$_GET['id'];
 $step=liststep($pid);
+$ctr =1;
 if(isset($_POST['search']))
 {	
 	if(trim($_POST['val']) == false)
@@ -139,6 +140,7 @@ else
 
 <thead>
 <th>Actions</th>
+<th>Step No</th>
 <th>Step Description</th>
 <th>Created On</th>
 <th>More</th>
@@ -155,11 +157,12 @@ else
 <a class="mdi-content-create" href="updatestep.php?id=<?php echo $s['stepid']; ?>&pid=<?php echo $pid; ?>"></a>&nbsp; &nbsp;
 <a class="mdi-action-delete" href="deletestep.php?id=<?php echo $s['stepid']; ?>&pid=<?php echo $pid; ?> " onclick = "return confirm('Confirm to delete')"></a>
 </td>
+<td><?php echo $ctr;?></td>
 <td><?php echo htmlentities($s['stepdesc']);?></td>
 <td><?php echo htmlentities($s['createon']);?></td>
-<td><a href="liststeprequired.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Requirement</a>&nbsp;&nbsp;<a href="listrequisite.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Pre-requisite</a>&nbsp;&nbsp;<a href="listsubsteps.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Substeps</a></td>
+<td><a href="liststeprequired.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Requirement</a><br/><?php if($ctr > 1){?><a href="listrequisite.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Pre-requisite</a><br/><?php }?><a href="listsubsteps.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Substeps</a></td>
 </tr
-><?php }?>
+><?php $ctr++;}?>
 </table>
 <?php }
 else {

@@ -224,7 +224,6 @@ function addrequirements($info)
 	$requirement = trim($info['requirement']);
 	$copy = trim($info['copy']);
 	$createdon=date('y-m-d');
-
 	$notes='';
 	$status='unchecked';
 	$pid=trim($info['pid']);

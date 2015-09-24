@@ -7,7 +7,7 @@ $id=$_SESSION['id'];
 $info=agency($id);
 $message="";
 $process=listprocess($id);
-
+$expire =findsubs($id);
 if(isset($_POST['add']))
 {   
     if(trim($_POST['processname'])== false)

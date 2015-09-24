@@ -134,9 +134,7 @@ else
              <tr>  
            
                 <td>
-           <a type="button" href="updateprocess.php?id=<?php echo $p['aprocessid']; ?> " style="color: skyblue;" class="mdi-content-create" style="background-color:white;"></a>
-
-           <a href="deleteprocess.php?id=<?php echo $p['aprocessid']; ?>" onclick = "return confirm('Delete?')" style="color: red;" class="mdi-content-clear" ></a>
+                <a href="preview.php?pid=<?php echo $p['aprocessid']?>">preview</a>
 
                 </td>
 
