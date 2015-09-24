@@ -35,6 +35,23 @@ $requirement=listrequirement($pid);
         }
     }
 
+    if(isset($_POST['add']))
+  {
+    if(trim($_POST['steps'])==false)
+    {
+      $message="Enter a Step";
+    }
+    else
+    {
+      addstep($_POST);
+      echo "<script type='text/javascript'>alert('Step HAS BEEN Added');</script>";
+      header("location:rspage.php?id=$pid");
+      exit();
+      
+    }
+  }
+
+
 ?>
 
 
@@ -106,7 +123,9 @@ $requirement=listrequirement($pid);
 
  <div class = "table-responsive">
  &nbsp; <a href="listprocess.php" class="btn btn-default btn-fab btn-raised mdi-hardware-keyboard-backspace"></a>
- <button class="btn btn-fab btn-info mdi-content-add" data-toggle="modal" data-target="#modal"></button>
+
+ <button class="btn btn-info btn-fab btn-raised mdi-content-add" data-toggle="modal" data-target="#add"></button>
+
  
      <?php if($step){$ctr=1;?>
 	<table id="myTable" class = "table table-striped table-hover">  
@@ -123,8 +142,8 @@ $requirement=listrequirement($pid);
         <?php foreach($step as $s){?>
 <tr>
 <td>
-<a href="updatestep.php?id=<?php echo $s['stepid']; ?>&pid=<?php echo $pid; ?>">UPDATE</a>
-<a href="deletestep.php?id=<?php echo $s['stepid']; ?>&pid=<?php echo $pid; ?> " onclick = "return confirm('Are You Sure!')">DELETE</a>
+<a class="mdi-content-create" href="updatestep.php?id=<?php echo $s['stepid']; ?>&pid=<?php echo $pid; ?>"></a>&nbsp; &nbsp;
+<a class="mdi-action-delete" href="deletestep.php?id=<?php echo $s['stepid']; ?>&pid=<?php echo $pid; ?> " onclick = "return confirm('Confirm to delete?')"></a>
 </td>
 <td><?php echo $ctr;?></td>
 <td><?php echo htmlentities($s['stepdesc']);?></td>
@@ -140,8 +159,73 @@ $message="No STEPS";
 
 <div> <?php echo $message;?> </div>
  </div>
-<script>
-$(document).ready(function(){
-    $('#myTable').dataTable();
-});
-</script>
+
+
+
+
+
+
+<!-- MODAL -->
+<div id="addprocess" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+    <div style="padding: 30px;"  class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 class="modal-title">Add Process</h3>
+      </div>
+     
+
+
+        <form method="POST">
+        <div class="col-xs-13">
+            <center>
+           <!--  <div style="background-color: #fff; color:red; padding: 50px; text-align:center; font-size:100%;"> <?php echo $message; ?></div> -->
+              <label for="desc"><h4> Process Name</h4></label>
+           
+      <input class="form-control" type="text" name="processname" id="processname" value="<?php if(isset($_POST['processname'])){ echo htmlentities($_POST['processname']);}?>" required/></td>
+      
+
+
+<label><h4>Recurrence</h4></label>
+<div class="sample">
+<select id="fnivel"  name="recurrence" class="form-control">
+<option value="Null">Null</option>
+<option value="Monthly">Monthly</option>
+<option value="Yearly">Yearly</option>
+</select>
+
+<div id="fnivel2" hidden="hidden" pk="1">
+<label for="numrecurrence"><h4>Number of Recurrence</h4></label>
+<input class="form-control" type="number" name="numrecurrence" id="numrecurrence" value="<?php if(isset($_POST['numrecurrence'])){ echo htmlentities($_POST['numrecurrence']);}?>" min="1" max="10" />
+</div>
+
+<label for="agency"><h4>Agency</h4></label></td>
+<td><input class="form-control" type="text"  name="agency" id="agency" value="<?php if(isset($_POST['agency'])){ echo htmlentities($_POST['agency']);}?>"/></td>
+
+
+
+
+
+       
+        <div style="margin-top: 20px;">
+        <button type="submit" class="btn btn-fab btn-info mdi-navigation-check" name="add"  /> &nbsp;
+  &nbsp;
+  
+            <button class="btn btn-fab btn-danger mdi-navigation-close" data-dismiss="modal"></button>
+          </div>
+        </center>
+        
+        </div>
+
+
+
+</form>
+
+
+
+      <div class="modal-footer">
+      <!--   <button class="btn btn-danger" data-dismiss="modal">Dismiss</button> -->
+      </div>
+    </div>
+  </div>
+</div>
