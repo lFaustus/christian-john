@@ -1,5 +1,5 @@
 <div class = "table-responsive">
-<a href="addrequirement.php?pid=<?php echo $pid?>">ADD</a> || <a href="listprocess.php">Back to List Of Process</a>
+<a href="addrequirement.php?pid=<?php echo $pid;?>">ADD</a> || <a href="listprocess.php">Back to List Of Process</a>
 
 
   <?php if($requirement){?>

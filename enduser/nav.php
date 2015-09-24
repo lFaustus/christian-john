@@ -8,12 +8,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-              <a style = "color:pink; font-size:28px; font-family:helvetica;" class="navbar-brand" href="listagencies.php">ENDINMIND</a>
+              <a style = "color:white; font-size:28px; font-family:helvetica;" class="navbar-brand" href="listagencies.php">ENDINMIND</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <a style="color:#eee; padding-top: 20px; padding-bottom:20px;"  href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu message-dropdown">
                         <li class="message-preview">
                             <a href="#">
@@ -66,7 +66,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                     <a style="color:#eee; padding-top: 20px; padding-bottom:20px;" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
                         <li>
                             <a href="#">Youre Account will Expire on: <span class="label label-default"><?php echo $edate['enddate'];?></span></a>
@@ -93,7 +93,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img class="img-rounded" width="16" height="16" src="files/<?php echo $info['image'];?>" />
+                     <a style="color:#eee; padding-top: 20px; padding-bottom:20px;"  href="#" class="dropdown-toggle" data-toggle="dropdown"> <img class="img-rounded" width="20" height="20" src="files/<?php echo $info['image'];?>" />
 
 					<?php echo $info['firstname']." ".$info['mi']." ".$info['lastname']; ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">

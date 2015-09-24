@@ -8,6 +8,7 @@ if(!isset($_SESSION['islogin']))
 }
 $id=$_SESSION['id'];
 $info=user($id);
+$ptemplate = listprocesstemplate($id);
 $page = $_GET['page'];
 $pid = $_GET['pid'];
 $sr = "";
@@ -72,17 +73,14 @@ $ctr = 1;
 
 
                 <div  class="panel panel-info">
-    <div style="padding-bottom: 50px; text-align: center;" class="panel-heading">
-  <h3 style="padding-top: 30px; "class="panel-title mdi-action-assignment mdi-4x"><h2> List of Steps</h2></h3>
+    <div style="padding-bottom: ; text-align: center;" class="panel-heading">
+  <h3 style="padding-top: px;"><h2>   <h2>Step Number: <?php echo $page; ?> </h2></h3>
     </div>
-    <div style="padding:10px; padding-left: 60px; padding-right: 60px; padding-bottom: 50px;" class="panel-body">
+    <div style="padding:5px; padding-left: 60px; padding-right: 60px; padding-bottom: px;" class="panel-body">
 
 
 
-<br/>
-<!-------->
-<div class = "row">
-  <div class = "col-lg-12">
+<div style="text-align: center; ">
 
    <?php             
 
@@ -121,10 +119,12 @@ $paginate = '';
 if($lastpage > 1)
 {
 
+
+
 $paginate .= "<div class='paginate'>";
 // Previous
 if ($page > 1){
-$paginate.= "<a href='$targetpage?page=$prev&pid=$pid'>previous</a>";
+$paginate.= "<a href='$targetpage?page=$prev&pid=$pid'> <<< previous</a>";
 }else{
 $paginate.= "<a href='startrequirements.php?pid=$pid' />previous</a>"; }
 
@@ -190,9 +190,9 @@ if ($counter == $page){
 
 // Next
 if ($page < $counter - 1){
-$paginate.= "<a id= 'nxt' href='$targetpage?page=$next&pid=$pid'>next</a>";
+$paginate.= "<a id= 'nxt' href='$targetpage?page=$next&pid=$pid'>&nbsp; next >>></a>";
 }else{
-		$paginate.= "<a id='nxt' href='landingpage.php?pid=$pid'>next</a>";
+		$paginate.= "<a id='nxt' href='landingpage.php?pid=$pid'> &nbsp;next</a>";
 }
 
 $paginate.= "</div>";
@@ -205,12 +205,41 @@ $paginate.= "</div>";
 <?php foreach($result as $r)
 { ?>
 <div>
-<h3><strong>Step Number: <?php echo $page; ?></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="ftagstep.php?page=<?php echo $page;?>&sid=<?php echo $r['stepid'];?>&pid=<?php echo $pid;?>">ADD FILE</a>
-</h3>
+
+<?php if($ptemplate){?>
+  <?php foreach($ptemplate as $pt){
+    $waiting =waitingproductivity($pt['aprocessid']);
+    $done =doneproductivity($pt['aprocessid']);
+    $undone = undoneproductivity($pt['aprocessid']);
+    $total = productcount($pt['aprocessid']);
+    $rtotal =productreqcount($pt['aprocessid']);
+    $uncheck=productrequncheck($pt['aprocessid']);
+    $check=productreqcheck($pt['aprocessid']);
+    ?>
+
+    <div style="background-color: #ff7; color: black; text-align: center;" class="alert alert-dismissable alert-warning">
+       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h4> STATUS: </h4>
+      <p>WAITING: <?php echo $waiting['ide'];?> &nbsp;&nbsp;&nbsp;&nbsp; DONE : <?php echo $done['ide'];?>/<?php echo $total['ide'];?> &nbsp;&nbsp;&nbsp;&nbsp; UNDONE : <?php echo $undone['ide'];?></p>
+    </div>
+
+  </div>
+  <?php }?>
+  <?php }?>
+
+
+<!--   <a >ADD FILE</a> -->
+
+
+<!-- <div class="alert alert-dismissable alert-warning">
+
+</h2>
+</div>
+ -->
 
 <h3><?php echo $r['stepdesc']; ?></h3>
 <?php $sr = startsteprequire($r['stepid']);
+
 $ss = startsubsteps($r['stepid']); ?>
 <?php if($ss){?>
 <h1>SUB STEPS</h1>
@@ -224,8 +253,10 @@ $ss = startsubsteps($r['stepid']); ?>
 <?php }?>
 <?php }?>
 
-<?php if($sr){?>
-<h1>STEP REQUIREMENTS</h1>
+ <a href="ftagstep.php?page=<?php echo $page;?>&sid=<?php echo $r['stepid'];?>&pid=<?php echo $pid;?>" class="btn btn-default btn-raised">Attach File</a>
+<div class="alert alert-dismissable alert-success">
+   <?php if($sr){?>
+<h1 style="color: #fff;"> STEP REQUIREMENTS</h1>
 <ul>
 <?php foreach($sr as $rrr){?>
 <li><h3><?php echo htmlentities($rrr['reqname']);?></h3></li>
@@ -233,6 +264,8 @@ $ss = startsubsteps($r['stepid']); ?>
 </ul>
 <br/>
 <?php }?>
+    
+
 
 <?php }?>
 <br />
@@ -242,13 +275,19 @@ $ss = startsubsteps($r['stepid']); ?>
 </div>
 <?php }else{ echo "NO STEPS!";}?>	
 
+<div style="font-size:30px">
 <?php 
 // pagination
 echo $paginate;
+
 ?>
-               
+</div>
+<div class="mdi-navigation-arrow-back mdi-2x">
+  &nbsp; &nbsp; &nbsp; &nbsp; 
+  <div class="mdi-navigation-arrow-forward mdi-2x">
+    </div>     
                 <div>
-                <div>
+                <div>   </div> 
             </div>
 			
             <!-- /.container-fluid -->

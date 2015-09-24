@@ -76,9 +76,7 @@ $ptemplate = listprocesstemplate($id);
     <div style="padding:10px; padding-left: 60px; padding-right: 60px; padding-bottom: 50px;" class="panel-body">
 
 <div style="text-align: center;">
-<!-------->
-<div class = "row">
-  <div class = "col-lg-12">
+
   <?php if($ptemplate){?>
   <?php foreach($ptemplate as $pt){
 	  $waiting =waitingproductivity($pt['aprocessid']);
@@ -90,21 +88,25 @@ $ptemplate = listprocesstemplate($id);
 	  $check=productreqcheck($pt['aprocessid']);
 	  ?>
   <div>
+
+    <div class="well well-lg">
+  
   <a href="startrequirements.php?pid=<?php echo $pt['aprocessid'];?>">
-  PROCESS NAME : <?php echo $pt['processname'];?><br/>
-  FROM AGENCY : <?php echo $pt['agencyname'];?><br/>
+  <h4> <?php echo $pt['processname'];?> </h4> <br/>
+  FROM AGENCY : <br><?php echo $pt['agencyname'];?><br/>
   BRANCH : <?php echo $pt['branch'];?><br/>
   ADDRESS : <?php echo $pt['address'];?>
-  </a>
+  </a> <br>
+   <a class="btn btn-danger btn-raised" onclick="return confirm('Are You Sure?')" href="deletesubsprocess.php?id=<?php echo $pt['spid'];?>">DELETE</a>
   <hr/>
-  <h3>Productivity</h3>
-  <h4>STEPS</h4>
+  <h3>Status</h3>
+
   <p>WAITING: <?php echo $waiting['ide'];?>/<?php echo $total['ide'];?> &nbsp;&nbsp;&nbsp;&nbsp; DONE : <?php echo $done['ide'];?>/<?php echo $total['ide'];?> &nbsp;&nbsp;&nbsp;&nbsp; UNDONE : <?php echo $undone['ide'];?>/<?php echo $total['ide'];?></p>
   <h4>REQUIREMENTS</h4>
   <p>UNCHECK : <?php echo $uncheck['ide'];?>/<?php echo $rtotal['ide'];?> &nbsp;&nbsp;&nbsp;&nbsp; CHECK : <?php echo $check['ide'];?>/<?php echo $rtotal['ide'];?></p>
   <p></p>
-  <a class="btn btn-danger btn-raised" onclick="return confirm('Are You Sure?')" href="deletesubsprocess.php?id=<?php echo $pt['spid'];?>">DELETE</a>
-  </div>
+ 
+  </div> </div>
   <?php }?>
   <?php }?>
     </div>

@@ -122,13 +122,13 @@ if(isset($_POST['next']))
 <div style="padding-left: 200px; padding-right: 200px;">
 
 
-<div class="panel panel-default">
+<div style="background-color: yellow;" class="panel panel-default">
     <div class="panel-body">
 
-    <input type="checkbox" name="requirements[]" value="<?php echo $r['reqid'];?>" <?php if($r['reqstatus'] == 'check'){echo 'checked';}?> />
+    
      
-  <a class="mdi-editor-attach-file" href="ftagreq.php?rid=<?php echo $r['reqid'];?>&pid=<?php echo $pid;?>"></a> <h4> <?php echo htmlentities($r['reqname']);?>  (<?php echo htmlentities($r['copyno']);?>)</h4>
-  <a href="javascript:void(0)" class="btn btn-default btn-fab btn-raised mdi-editor-attach-file"></a>
+    <h4><input type="checkbox" name="requirements[]" value="<?php echo $r['reqid'];?>" <?php if($r['reqstatus'] == 'check'){echo 'checked';}?> /> <?php echo htmlentities($r['reqname']);?>  (<?php echo htmlentities($r['copyno']);?>) <a class="mdi-editor-attach-file" href="ftagreq.php?rid=<?php echo $r['reqid'];?>&pid=<?php echo $pid;?>"> </a></h4> 
+<!--   <a href="javascript:void(0)" class="btn btn-default btn-fab btn-raised mdi-editor-attach-file"></a> -->
     </div>
 
 </div>

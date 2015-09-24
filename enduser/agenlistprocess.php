@@ -84,9 +84,17 @@ $aprocess = listagenprocess($aid);
   <?php foreach($aprocess as $apro){?>
   <?php $val = checksubs($apro['aprocessid'],$id);?>
   <?php if($val){}else{?>
-  <div><?php echo $apro['processname'];?><a href="addprocesstemplate.php?pid=<?php echo $apro['aprocessid'];?>&aid=<?php echo $aid?>">download</a></div>
+  <div>
+
+    <div style="text-align: center" class="alert alert-dismissable alert-success">
+      <h3> <?php echo $apro['processname'];?> </h4> <br> <a class="mdi-action-get-app mdi-3x" href="addprocesstemplate.php?pid=<?php echo $apro['aprocessid'];?>&aid=<?php echo $aid?>"></a></div> </div>
   <?php }}?>
-  <?php }else{ echo "This Agency Havent Created A Process!";}?>
+  <?php }else
+
+
+  { 
+
+    echo "<div style='text-align: center; color: red; '><h4>This agency has not yet created a process!";}?>
     </div>
 </div>
 
