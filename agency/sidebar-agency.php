@@ -61,21 +61,22 @@
                    
                     </li>
  <li>
-                       <div style = "margin-top: 10px; margin-left:20px;height:1px;width:180px;background:#333"></div>
+                       <div style = "margin-top: 10px; margin-left:20px;height:1px;width:180px;background:#skyblue"></div>
                     </li>
                 
                             <li>
                                    
-                                <a style="color:white;" title = "Personal Process"  href="agencypage.php"><i class = "mdi-action-assignment"></i> Process</a>
+                                <a style="color:white;" title = "Personal Process"  href="agencypage.php"><i class = "mdi-action-assignment"></i> Manage Process</a>
                             </li>
-                            <li>
-                                <a title = "Agency Process"style = "color:#fff;" href="deactivatedagencies.php"><i class = "mdi-content-content-copy"></i> Documents</a>
+                                     <li>
+                                   
+                                <a style="color:white;" title = "Personal Process"  href="listmyprocess.php"><i class = "mdi-action-assignment"></i> My Process</a>
                             </li>
                             <li>
                                 <a title = "Agency Process"style = "color:#fff;" href="listsubs.php"><i class = "mdi-maps-local-atm"></i> Subscription</a>
                             </li>
                                        <li>
-                       <div style = "margin-left:20px;height:1px;width:180px;background:#333"></div>
+                       <div style = "margin-left:20px;height:1px;width:180px;background:skyblue"></div>
                     </li>
 
                         <li>

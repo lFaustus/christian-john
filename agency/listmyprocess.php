@@ -114,8 +114,7 @@ else
             <thead>  
           <tr>  
             <th><center>Action</center></th>
-            <th>Process Name</th> 
-            <th> More </th> 
+            <th>Process Name</th>  
         
           </tr>  
         </thead>  
@@ -123,8 +122,7 @@ else
         <tfoot>
               <tr>  
             <th><center>Action</center></th>
-            <th>Process Name</th>
-            <th> More </th>
+            <th>Process Name</th>  
             
         </tfoot>
  
@@ -144,15 +142,10 @@ else
 
 
             <td>
-            <a style="color: black;" ><?php echo htmlentities($p['processname']);?></a>
+            <a style="color: #FF69B4" href="rspage.php?id=<?php echo $p['aprocessid'];?>"><?php echo htmlentities($p['processname']);?></a>
              </td>
-            <td>
-              <a href="liststeps.php?id=<?php echo $p['aprocessid']; ?>" >Steps</a>  | <a href="listrequirement.php?id=<?php echo $p['aprocessid']; ?>" >Requirements</a>
-            </td>
+            
           </tr>  
-        
-
-          </td>
           <?php }?>
         </tbody>
     </table>

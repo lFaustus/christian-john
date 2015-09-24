@@ -113,6 +113,11 @@ else
     </div>
     <div style="padding:10px; padding-left: 60px; padding-right: 60px; padding-bottom: 50px;" class="panel-body">
 
+   
+
+<a href="agencypage.php?id=<?php echo $pid;?>" class="btn btn-default btn-fab btn-raised mdi-hardware-keyboard-backspace"></a>
+
+
 	<button class="btn btn-fab btn-info mdi-content-add" data-toggle="modal" data-target="#add"></button>
 
 
@@ -199,14 +204,19 @@ $message="No Process";
  <!--  <a href="liststeps.php?id=<?php echo $pid;?>">Return to the List of Steps</a> -->
   </div>
 </div>
+
+
 </div>
 
 
       </div>
     
       </div>
+
     </div>
+
   </div>
+
 </div>
 <div> <?php echo $message;?> </div>
 

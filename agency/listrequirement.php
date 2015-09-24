@@ -122,6 +122,7 @@ else
 
 
 
+<a href="agencypage.php?id=<?php echo $pid;?>" class="btn btn-default btn-fab btn-raised mdi-hardware-keyboard-backspace"></a>
  <button class="btn btn-fab btn-info mdi-content-add" data-toggle="modal" data-target="#add"></button>
 
 
@@ -205,11 +206,7 @@ $(document).ready( function () {
 } );
 </script>
 
-<div style="padding: 5px;">
-<center>
-<a href="rspage.php?id=<?php echo $pid;?>" class="btn btn-default btn-fab btn-raised mdi-hardware-keyboard-backspace"></a>
 
-</div>
 
 
 <div> <?php echo $message;?> </div>

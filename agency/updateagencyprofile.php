@@ -103,7 +103,7 @@ else
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Profile</title>
+    <title>Update Profile Agency - ENDINMIND</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -156,9 +156,8 @@ else
 
                  
     <div class="panel-heading"> 
-
-         <img  id="blah" class="img-circle" width="200" height="200" src="files/<?php echo $info['logo'];?>" />
-     <h3> <?php echo htmlentities($info['agencyname']);?> <br><br><?php echo htmlentities($info['branch']);?> </h3></div>
+    	<h3> Update Profile </h3>
+</div>
     <div class="panel-body">
 
 
@@ -167,34 +166,51 @@ else
 
                     <div class="col-md-12" style="text-align: center; padding-top:30px; ">
 
+<form action="" method="POST" enctype="multipart/form-data"  name="changer">
+    <center>
+  <img  id="blah" class="img-circle" width="200" height="200" src="files/<?php echo $info['logo'];?>" />
+  <br>
 
 
+          <span class="btn btn-default btn-raised btn-file"> BROWSE
+                <input id="imgInp" type="file" name="file"  accept="image/*"  /> 
+                    </span>
  
- 
- <label for="address"><h4 style="color: #999;">Address </h4></label><br>
- <?php if(isset($_POST['address'])){ echo htmlentities($_POST['address']);}else{echo htmlentities($info['address']);}?>
- <br>
+  
+  <br>
+<h4 style="color: #999;"> Agency Name </h4>
+ <input style="text-align: center;" class="form-control" type="text" name="agencyname" id="agencyname" value="<?php if(isset($_POST['agencyname'])){ echo htmlentities($_POST['agencyname']);}else{echo htmlentities($info['agencyname']);}?>" required />
+
+ <label for="branch"><h4 style="color: #999;"> BRANCH </h4><br/>
+ <input style="text-align: center;" class="form-control" type="text" name="branch" id="branch" value="<?php if(isset($_POST['branch'])){ echo htmlentities($_POST['branch']);}else{echo htmlentities($info['branch']);}?>" required />
 
  
- <label for="officeno"><h4 style="color: #999;"> Office No. </h4></label><br>
-<?php if(isset($_POST['officeno'])){ echo htmlentities($_POST['officeno']);}else{echo htmlentities($info['officeno']);}?>
-<br>
  
- <label for="contactperson"><h4 style="color: #999;">Contact Person </h4></label><br>
- <?php if(isset($_POST['contactperson'])){ echo htmlentities($_POST['contactperson']);}else{echo htmlentities($info['contactperson']);}?>
-<br>
- 
- <label for="contactpersonno"><h4 style="color: #999;">Contact Person No. </h4> </label><br>
- <?php if(isset($_POST['contactpersonno'])){ echo htmlentities($_POST['contactpersonno']);}else{echo htmlentities($info['contactpersonno']);}?>
-<br>
- 
- <label for="emailadd"><h4 style="color: #999;"> Contact Email Address </h4></label><br>
-<?php if(isset($_POST['emailadd'])){ echo htmlentities($_POST['emailadd']);}else{echo htmlentities($info['contactemail']);}?><br>
+ <label for="address"><h4 style="color: #999;">Address </h4></label></td>
+ <input style="text-align: center;" class="form-control" type="text" name="address" id="address" value="<?php if(isset($_POST['address'])){ echo htmlentities($_POST['address']);}else{echo htmlentities($info['address']);}?>" required/>
 
+ 
+ <label for="officeno"><h4 style="color: #999;"> Office No. </h4></label></td>
+ <input style="text-align: center;" class="form-control" type="text" name="officeno" id="officeno" value="<?php if(isset($_POST['officeno'])){ echo htmlentities($_POST['officeno']);}else{echo htmlentities($info['officeno']);}?>" required />
 
+ 
+ <label for="contactperson"><h4 style="color: #999;">Contact Person </h4></label>
+ <input style="text-align: center;" class="form-control" type="text" name="contactperson" id="contactperson" value="<?php if(isset($_POST['contactperson'])){ echo htmlentities($_POST['contactperson']);}else{echo htmlentities($info['contactperson']);}?>" required />
+
+ 
+ <label for="contactpersonno"><h4 style="color: #999;">Contact Person No. </h4> </label>
+ <input style="text-align: center;" class="form-control" type="text" name="contactpersonno" id="contactpersonno" value="<?php if(isset($_POST['contactpersonno'])){ echo htmlentities($_POST['contactpersonno']);}else{echo htmlentities($info['contactpersonno']);}?>" required />
+
+ 
+ <label for="emailadd"><h4 style="color: #999;"> Contact Email Address </h4></label>
+ <input style="text-align: center;" class="form-control" type="email" name="emailadd" id="emailadd" value="<?php if(isset($_POST['emailadd'])){ echo htmlentities($_POST['emailadd']);}else{echo htmlentities($info['contactemail']);}?>" required />
+
+     
+       &nbsp;
+       <input class="btn btn-info btn-raised btn-file" type="submit" name="update" value="UPDATE">
   
  
-<br>
+</form>
 
   <a onclick="return confirm('Are you sure you want to deactivate?')" class="btn btn-danger btn-raised" href="deleteprofile.php?id=<?php echo $info['agencyid']?>">Deactivate Account</a> 
 </div>

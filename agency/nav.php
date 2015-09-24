@@ -59,7 +59,7 @@
                             <a href="agencyprofile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                            <a href="updateagencyprofile.php"><i class="mdi-action-settings"></i> Update Profile</a>
                         </li>
                         <li>
                             <a href="changepassagency.php"><i class="fa fa-fw fa-gear"></i> Change Password</a>
