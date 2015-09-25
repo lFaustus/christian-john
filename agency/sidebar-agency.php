@@ -70,7 +70,7 @@
                             </li>
                                      <li>
                                    
-                                <a style="color:white;" title = "Personal Process"  href="listmyprocess.php"><i class = "mdi-action-assignment"></i> My Process</a>
+                                <a style="color:white;" title = "Personal Process"  href="listmyprocess.php"><i class = "mdi-action-assignment"></i> Preview Process</a>
                             </li>
                             <li>
                                 <a title = "Agency Process"style = "color:#fff;" href="listsubs.php"><i class = "mdi-maps-local-atm"></i> Subscription</a>

@@ -10,6 +10,24 @@ $info=user($id);
 $sid=$_GET['id'];
 $pid=$_GET['pid'];
 $rec=steprequirement($sid);
+$recs=listrequirement($pid);
+if(isset($_POST['add']))
+{   
+    if(empty($_POST['requirement']))
+    {       
+    $message="SELECT ATLEAST 1 of the requirements";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+    }
+    else
+    {
+    $message="REQUIREMENTS BEEN ADDED";
+    $_POST['sid']=$sid;
+        addsteprequirement($_POST);
+    echo "<script type='text/javascript'>alert('$message');
+     window.location='liststeprequired.php?id=".$sid."&pid=".$pid."';
+    </script>";
+    }
+}
 }
 else
 {
@@ -18,7 +36,6 @@ else
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +48,7 @@ else
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>List Requirements - ENDINMIND</title>
+    <title>User - ENDINMIND</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -53,7 +70,7 @@ else
 
     <!-- Custom Fonts -->
      <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.8/css/jquery.dataTables.css">
 </head>
 
 
@@ -78,76 +95,138 @@ else
 
                 <div  class="panel panel-info">
     <div style="padding-bottom: 50px; text-align: center;" class="panel-heading">
-  <h3 style="padding-top: 30px; "class="panel-title mdi-action-assignment mdi-4x"><h2>List Requirements</h2></h3>
+  <h3 style="padding-top: 30px; "class="panel-title mdi-action-assignment mdi-4x"><h2> List Step Requirement</h2></h3>
     </div>
     <div style="padding:10px; padding-left: 60px; padding-right: 60px; padding-bottom: 50px;" class="panel-body">
 
 
 
+       
+                <!-- /.row -->
 
- <!-- Navigation Buttons -->
 
- 
- &nbsp; <a href="liststeps.php?id=<?php echo $pid;?>" class="btn btn-default btn-fab btn-raised mdi-hardware-keyboard-backspace"></a>
 
- <button class="btn btn-info btn-fab btn-raised mdi-content-add" data-toggle="modal" data-target="#simple-dialog"></button>
-<br><br>
-
- 
-
-<a href="steprequirements.php?id=<?php echo $sid; ?>&pid=<?php echo $pid; ?>">ADD</a>
-<?php if($rec){?>
-<table border="1"; cellspacing="1px"; cellpadding="5px";>
-<thead>
-<th>&nbsp;</th>
-<th>Requirements</th>
-</thead>
-<?php foreach($rec as $r){?>
-<tr>
-<td><a href="deletesteprequired.php?rid=<?php echo $r['steprequiredid'];?>&id=<?php echo $sid;?>&pid=<?php echo $pid;?>">DELETE</a></td>
-<td><?php echo $r['reqname'];?></td>
-</tr>
-<?php }?>
-</table>
-<?php }
-else
-{
-	echo "<div><center><h3>No Data</div>";
-}?>
+    <button class="btn btn-fab btn-info mdi-content-add" data-toggle="modal" data-target="#add"></button>
   
 
+
+
+
+
+
+<?php if($recs){?>
+
+
+ <div class = "table-responsive">
+      <table class="table table-striped table-hover ">
+    <table id="addRequirement" class="display">
+       
+     
+            <thead>  
+          <tr>  
+            <th><center>Action</center></th>
+            <th>Process Name</th>  
+        
+          </tr>  
+        </thead>  
+ 
+        <tfoot>
+              <tr>  
+            <th><center>Action</center></th>
+            <th>Requirement</th>  
+            
+        </tfoot>
+ 
+
+        
+
+        <tbody>
+<?php foreach($rec as $r){?>
+             <tr>  
+           
+                <td style="background-color: white;"><!-- 
+           <a type="button" href="updateprocess.php?id=<?php echo $p['aprocessid']; ?> " style="color: skyblue;" class="mdi-content-create" style="background-color:white;"></a> -->
+
+          <a class="mdi-action-delete" href="deletesteprequired.php?rid=<?php echo $r['steprequiredid'];?>&id=<?php echo $sid;?>&pid=<?php echo $pid;?>"> </a></td>
+
+
+              
+
+
+            <td>
+           <?php echo $r['reqname'];?>
+             </td>
+            
+          </tr>  
+          <?php }?>
+        </tbody>
+    </table>
+
+    <?php }
+else {
+$message = "No Data";
+}?>
+
+  
+<div style="text-align: center; padding-bottom: 20px;">
+<a href="liststeps.php?id=<?php echo $pid;?>" class="btn btn-default btn-fab btn-raised mdi-hardware-keyboard-backspace"></a>  
+</div>
   </div>
 </div>
 </div>
-			
+            
             <!-- /.container-fluid -->
 
         </div>
         <!-- /#page-wrapper -->
     </div>
-    <!-- /#wrapper -->
 
-<div id="simple-dialog" class="modal fade" tabindex="-1">
+
+
+<!-- MODAL CREATE PROCESS -->
+
+
+<div id="add" class="modal fade" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-body">
-       <center>
-        <h3>Add Requirements </h3>
-        <form method="POST">
-  <br>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
-  <a href="steprequirements.php?id=<?php echo $sid; ?>&pid=<?php echo $pid; ?>">ADD</a>
-<?php echo $sid; ?>&pid=<?php echo $pid; ?>
-    &nbsp;
-  <button class="btn btn-info btn-fab btn-raised mdi-action-done" type="submit" name="add"> </button>
-  
-  </table>
-  </form>
-
+        <h4 class="modal-title">Step Requirements</h4>
       </div>
-    </div>
+      <div class="modal-body">
+        
+<div style"text-align: center;">
+  
+
+<form method="POST">
+<?php if($recs){?>
+<?php foreach($recs as $r){
+    if(reqcompare($r['reqid'],$sid)){}
+    else {?>
+
+<input type="checkbox" name="requirement[]" value="<?php echo $r['reqid'];?>" /><?php echo $r['reqname'];?>
+<br/>
+<?php }}?>
+
+
+<?php echo "<input type='submit' name='add' value='ADD' />";}else{ echo "No requirements Puted";}?>
+</form>
+
+
+<center>
+
+<a href="liststeprequired.php?id=<?php echo $sid;?>&pid=<?php echo $pid;?>" class="btn btn-default btn-fab btn-raised mdi-hardware-keyboard-backspace"></a>  
+
   </div>
 </div>
+</div>
+
+      </div>
+      <div class="modal-footer">
+
+
+
 
 <!-- DataTables CSS -->
 
@@ -158,15 +237,14 @@ else
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.8/js/jquery.dataTables.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
- <script src="../js/bootstrap.min.js"></script>
+ <script src="../js/bootstrap.min.js"></script>             
 
-
-<script src="../js/jquery.min.js"></script> 
 <script type="text/javascript">
-
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"> </script>
+$(document).ready( function () {
+    $('#addRequirement').DataTable();
+} );
+</script>
 
 </body>
+
 </html>

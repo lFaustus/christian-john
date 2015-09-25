@@ -133,14 +133,16 @@ else
 <?php foreach($process as $p){?>
              <tr>  
            
-                <td>
-                <a href="preview.php?pid=<?php echo $p['aprocessid']?>">preview</a>
+           <td style="background-color: white;">
+              <ul class="pager">
+    <li><a href="preview.php?pid=<?php echo $p['aprocessid']?>">PREVIEW</a></li>
+</ul>
+           </td>
+               
 
-                </td>
 
-
-            <td>
-            <a style="color: #FF69B4" href="rspage.php?id=<?php echo $p['aprocessid'];?>"><?php echo htmlentities($p['processname']);?></a>
+            <td style="background-color: white;">
+            <h4 style="color: grey"><?php echo htmlentities($p['processname']);?></h4>
              </td>
             
           </tr>  
