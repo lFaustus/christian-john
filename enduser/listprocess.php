@@ -110,9 +110,11 @@ if(isset($_POST['search']))
 
 <?php if($process){?>
   
+
+
  <div class = "table-responsive">
       <table class="table table-striped table-hover ">
-    <table id="listprocess" class="display">
+    <table style="color:grey;" id="listprocess" class="display">
 
 
 
@@ -123,7 +125,7 @@ if(isset($_POST['search']))
 
        
      
-            <thead>  
+            <thead style="color:skyblue;">  
           <tr>  
             <th><center>Actions</center></th>
             <th>Process Name</th>  
@@ -138,7 +140,7 @@ if(isset($_POST['search']))
           </tr>  
         </thead>  
  
-        <tfoot>
+         <tfoot style="color:skyblue;">  
         <tr>  
             <th><center>Actions</center></th>
             <th>Process Name</th>  
@@ -172,14 +174,21 @@ if(isset($_POST['search']))
 
 
 </td>
-<td><?php echo htmlentities($p['processname']);?></td>
+<td><b><?php echo htmlentities($p['processname']);?></td>
 <td><?php echo htmlentities($p['schedtype']);?></td>
 <td><?php echo htmlentities($p['recurrence']);?></td>
 <!-- <td><?php echo htmlentities($p['numrec']);?></td> -->
 <td><?php echo htmlentities($p['createdon']);?></td>
 <!-- <td><?php echo htmlentities($p['agencycopiedfrom']);?></td> -->
 <td><?php echo htmlentities($p['datemodified']);?></td> 
-<td><a href="liststeps.php?id=<?php echo $p['euprocessid'];?>">Steps <a href="listrequirement.php?id=<?php echo $p['euprocessid'];?>">Requirements</a></td>
+<td>
+<ul class="pager">
+    <li><a href="liststeps.php?id=<?php echo $p['euprocessid'];?>"> Steps</a></li>
+    <li><a href="listrequirement.php?id=<?php echo $p['euprocessid'];?>" >Requirements</a></li>
+</ul>
+</td>
+
+<!-- <td  style="background-color: white;"> <a class="btn btn-info btn-xs" >Steps <a class="btn btn-info btn-xs" ">Requirements</a></td> -->
           </tr>  
           <?php }?>
         </tbody>

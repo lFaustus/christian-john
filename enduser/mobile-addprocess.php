@@ -7,30 +7,24 @@ if($login)
 {
 $id=$_SESSION['id'];
 $info=user($id);
-$sid=$_GET['id'];
-$pid=$_GET['pid'];
-$i = $_GET['i'];
-$step=forsubsteps($i);
-	if(isset($_POST['update']))
+if(isset($_POST['add']))
+{	
+	if(trim($_POST['processname'])== false)
 	{
-		if(trim($_POST['steps'])==false)
-		{
-			$message="Enter a Steps";
-		}
-		else
-		{
-			$_POST['sid'] = $i;
-			updatesubsteps($_POST);
-			echo "<script type='text/javascript'>
-			alert('The Sub-Step Has been Updated');
-			window.location='listsubsteps.php?id=".$sid."&pid=".$pid."';
-			</script>";
-		}
+		$message="Enter a Process Name";
 	}
+	else
+	{
+	$_POST['id']=$id;
+	addprocess($_POST);
+	header('location:listprocess.php');
+	exit();
+	}
+}
 }
 else
 {
-	header('location:../intro.php');
+	header('location:logoutuser.php');
 	exit;
 }
 
@@ -49,7 +43,7 @@ else
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>User - ENDINMIND</title>
+    <title>Add Process - ENDINMIND</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -78,46 +72,49 @@ else
 <body>
 
 
-   
-    <div id="wrapper">
-<!-- TOP NAV BAR -->
+  
 
-   <?php include ('nav.php'); ?>
-
-   <!-- //END OF TOP NAV BAR -->
-    
-           
-            <!-- Sidebar inclusion -->
-  <?php include ('menu.php'); ?>
 
  
- <div style="margin-left:30px; margin-right:30px;">
+
 
 
                 <div  class="panel panel-info">
     <div style="padding-bottom: 50px; text-align: center;" class="panel-heading">
-  <h3 style="padding-top: 30px; "class="panel-title mdi-action-assignment mdi-4x"><h2>Update Substep</h2></h3>
+  <h3 style="padding-top: 30px; "class="panel-title mdi-action-assignment mdi-4x"><h2> Add Process</h2></h3>
     </div>
     <div style="padding:10px; padding-left: 60px; padding-right: 60px; padding-bottom: 50px;" class="panel-body">
 
 
- <!-- Navigation Buttons -->
 
- 
- &nbsp; <a href="liststeps.php?id=<?php echo $pid; ?>" class="btn btn-default btn-fab btn-raised mdi-hardware-keyboard-backspace"></a>
 
 
 <center>
- 
 <form method="POST">
  
  
- <label for="steps"><h3> Step </h3></label> 
- <textarea class="form-control" name="steps" id="requirement" value="<?php if(isset($_POST['steps'])){ echo htmlentities($_POST['steps']);}?>" required ><?php echo htmlentities($step['stepdesc']); ?></textarea> 
+ <label for="processname"><h4> Process Name</label> 
+ <input class="form-control" type="text" name="processname" id="processname" value="<?php if(isset($_POST['processname'])){ echo htmlentities($_POST['processname']);}?>" required/> 
+ 
+ 
+ <label><h4>Recurrence</label> 
+ <select id="fnivel" name="recurrence" class="form-control">
+<option value="Null">None</option>
+<option value="Monthly">Monthly</option>
+<option value="Yearly">Yearly</option>
+</select> 
+ 
  <br>
- <button class="btn btn-info btn-fab btn-raised mdi-action-done" type="submit" name="update"> </button>
-<!--  <input type="submit" name="update" value="UPDATE">  -->
-<!--  <a >Return to List</a>  -->
+ <label for="numrecurrence"><h4>Number of Recurrence</label> <br>
+ <input class="form-control" id="fnivel2" hidden="hidden" pk="1" type="number" name="numrecurrence" id="numrecurrence" value="<?php if(isset($_POST['numrecurrence'])){ echo htmlentities($_POST['numrecurrence']);}?>" min="1" max="10" /> 
+ 
+ 
+ <label for="agency"><h4>Agency</label> 
+ <input class="form-control"  type="text"  name="agency" id="agency" value="<?php if(isset($_POST['agency'])){ echo htmlentities($_POST['agency']);}?>"/> 
+ 
+ 
+ &nbsp; 
+ <input class="btn btn-info btn-raised" type="submit" name="add" value="CREATE" /> 
  
  
 </form>
@@ -145,21 +142,18 @@ else
     <script src="../js/plugins/morris/morris-data.js"></script>	
 <script src="../js/jquery.min.js"></script> 
 <script>
-	function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-                $('#blah').attr('src', e.target.result);
-            }
-            
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    
-    $("#imgInp").change(function(){
-        readURL(this);
-    });
+$(document).ready(function (){
+    $("#fnivel").change(function () {
+  var selected_option = $('#fnivel').val();
+
+  if (selected_option != 'Null') {
+    $('#fnivel2').attr('pk','1').show();
+  }
+  if (selected_option == 'Null') {
+    $("#fnivel2").removeAttr('pk').hide();
+  }
+})
+  });	
 </script>
 
 </body>

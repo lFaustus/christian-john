@@ -87,7 +87,7 @@ else
 
                 <div  class="panel panel-info">
     <div style="padding-bottom: 50px; text-align: center;" class="panel-heading">
-  <h3 style="padding-top: 30px; "class="panel-title mdi-action-assignment mdi-4x"><h2> List Requirements</h2></h3>
+  <h3 style="padding-top: 30px; "class="panel-title mdi-action-assignment mdi-4x"><h2> List Step Requirements</h2></h3>
     </div>
     <div style="padding:10px; padding-left: 60px; padding-right: 60px; padding-bottom: 50px;" class="panel-body">
 		   
@@ -183,7 +183,7 @@ $message = "No Data";
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
-        <h4 class="modal-title">Requirements</h4>
+        <h4 class="modal-title">Step Requirements</h4>
       </div>
       <div class="modal-body">
         

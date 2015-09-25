@@ -1,16 +1,40 @@
 <?php
 require 'function.php';
+$message="";
+$flag=0;
+
 if(!isset($_SESSION['islogin']))
 {
-
-	header('location:../intro.php');
+		header('location:../intro.php');
 	exit;
 }
 $id=$_SESSION['id'];
 $info=user($id);
-$aid = $_GET['aid'];
-$aprocess = listagenprocess($aid);
+$pid=$_GET['pid'];
+$_POST['pid'] = $pid;
+	if(isset($_POST['add']))
+	{
+		if(trim($_POST['steps'])==false)
+		{
+			$message="Enter a Step";
+		}
+		else
+		{
+			addstep($_POST);
+			echo "<script type='text/javascript'>alert('Step HAS BEEN Added');</script>";
+			header("location:rspage.php?id=$pid");
+			exit();
+			
+		}
+	}
+
+
 ?>
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +47,7 @@ $aprocess = listagenprocess($aid);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>List Process - ENDINMIND</title>
+    <title>User - ENDINMIND</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -52,43 +76,38 @@ $aprocess = listagenprocess($aid);
 <body>
 
 
-
  
- <div style="">
 
 
                 <div  class="panel panel-info">
     <div style="padding-bottom: 50px; text-align: center;" class="panel-heading">
-  <h3 style="padding-top: 5px; "class="panel-title mdi-action-assignment mdi-4x"><h2> List of Agency Process</h2></h3>
+  <h3 style="padding-top: 30px; "class="panel-title mdi-action-assignment mdi-4x"><h2> Add Steps</h2></h3>
     </div>
-    <div style="padding:5px;  padding-bottom: 5px;" class="panel-body">
-
-<div style="text-align: center;">
-
-<br/>
-
-<div class = "row">
-  <div class = "col-lg-12">
-  <?php if($aprocess){?>
-  <?php foreach($aprocess as $apro){?>
-  <?php $val = checksubs($apro['aprocessid'],$id);?>
-  <?php if($val){}else{?>
-  <div>
-
-    <div style="text-align: center" class="alert alert-dismissable alert-success">
-      <h3> <?php echo $apro['processname'];?> </h4> <br> <a class="mdi-action-get-app mdi-3x" href="addprocesstemplate.php?pid=<?php echo $apro['aprocessid'];?>&aid=<?php echo $aid?>"></a></div> </div>
-  <?php }}?>
-  <?php }else
+    <div style="padding:10px; padding-left: 60px; padding-right: 60px; padding-bottom: 50px;" class="panel-body">
 
 
-  { 
 
-    echo "<div style='text-align: center; color: red; '><h4>This agency has not yet created a process!";}?>
-    </div>
+<center>
+  <form method="POST">
+   
+   
+   <label><h4>Steps: </h4></label> 
+   <textarea class="form-control" name="steps" value="<?php if(isset($_POST['steps'])){ echo htmlentities($_POST['steps']);}?>" required></textarea> 
+   
+     
+   &nbsp; 
+   <input class="btn btn-info btn-raised" type="submit" name="add" value="ADD"> 
+   
+   
+  </form>
+
+  <br>
+  <a href="liststeps.php?id=<?php echo $pid;?>" class="btn btn-default btn-fab btn-raised mdi-hardware-keyboard-backspace"></a>
+
+<div> <?php echo $message;?> </div>
+  </div>
 </div>
-
-                
-            </div>
+</div>
 			
             <!-- /.container-fluid -->
 
@@ -106,7 +125,25 @@ $aprocess = listagenprocess($aid);
     <!-- Morris Charts JavaScript -->
     <script src="../js/plugins/morris/raphael.min.js"></script>
     <script src="../js/plugins/morris/morris.min.js"></script>
-    <script src="../js/plugins/morris/morris-data.js"></script>
+    <script src="../js/plugins/morris/morris-data.js"></script>	
+<script src="../js/jquery.min.js"></script> 
+<script>
+	function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
+</script>
 
 </body>
 
