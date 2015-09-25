@@ -27,7 +27,7 @@ $requirement=listrequirement($pid);
             addstep($_POST);
       echo "<script type='text/javascript'>
       alert('The Step Has Been Added!');
-      window.location='rspage.php?id=".$pid."';
+      window.location='liststeps.php?id=".$pid."';
       </script>";
             
             
@@ -35,21 +35,6 @@ $requirement=listrequirement($pid);
         }
     }
 
-    if(isset($_POST['add']))
-  {
-    if(trim($_POST['steps'])==false)
-    {
-      $message="Enter a Step";
-    }
-    else
-    {
-      addstep($_POST);
-      echo "<script type='text/javascript'>alert('Step HAS BEEN Added');</script>";
-      header("location:rspage.php?id=$pid");
-      exit();
-      
-    }
-  }
 
 
 ?>
@@ -90,7 +75,7 @@ $requirement=listrequirement($pid);
      <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 </head>
-
+<?php include ('nav.php'); ?>
 
 <body>
 
@@ -99,7 +84,7 @@ $requirement=listrequirement($pid);
     <div id="wrapper">
 <!-- TOP NAV BAR -->
 
-   <?php include ('nav.php'); ?>
+   
 
    <!-- //END OF TOP NAV BAR -->
     
@@ -119,17 +104,19 @@ $requirement=listrequirement($pid);
 
 
 
-
-
- <div class = "table-responsive">
- &nbsp; <a href="listprocess.php" class="btn btn-default btn-fab btn-raised mdi-hardware-keyboard-backspace"></a>
-
- <button class="btn btn-info btn-fab btn-raised mdi-content-add" data-toggle="modal" data-target="#add"></button>
+<!-- Navigation Buttons -->
 
  
+ &nbsp; <a href="listprocess.php" class="btn btn-default btn-fab btn-raised mdi-hardware-keyboard-backspace"></a>
+
+ <button class="btn btn-info btn-fab btn-raised mdi-content-add" data-toggle="modal" data-target="#simple-dialog"></button>
+
+
+<div class = "table-responsive">
+ 
      <?php if($step){$ctr=1;?>
-	<table id="myTable" class = "table table-striped table-hover">  
-			<thead>  
+	<table  id="myTable" class = "table table-striped table-hover">  
+			<thead style="color: skyblue;">  
           <tr>  
 <th>&nbsp;</th>
 <th>Step No</th>
@@ -146,9 +133,18 @@ $requirement=listrequirement($pid);
 <a class="mdi-action-delete" href="deletestep.php?id=<?php echo $s['stepid']; ?>&pid=<?php echo $pid; ?> " onclick = "return confirm('Confirm to delete?')"></a>
 </td>
 <td><?php echo $ctr;?></td>
-<td><?php echo htmlentities($s['stepdesc']);?></td>
+<td style="color:grey;"><b><?php echo htmlentities($s['stepdesc']);?></td>
 <td><?php echo htmlentities($s['createon']);?></td>
-<td><a href="liststeprequired.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Requirement</a>&nbsp;&nbsp;<a href="listrequisite.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Pre-requisite</a>&nbsp;&nbsp;<a href="listsubsteps.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Substeps</a></td>
+
+<td>
+<ul class="pager">
+    <li><a href="liststeprequired.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Requirement</a></li>
+    <li><a href="listrequisite.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Pre-requisite</a></li>
+    <li><a href="listsubsteps.php?id=<?php echo $s['stepid'];?>&pid=<?php echo $pid;?>">Substep</a></li>
+</ul>
+</td>
+
+
 </tr><?php $ctr++;}?>  
         </tbody>  
       </table>  
@@ -163,69 +159,46 @@ $message="No STEPS";
 
 
 
-
-
-<!-- MODAL -->
-<div id="addprocess" class="modal fade" tabindex="-1">
+<div id="simple-dialog" class="modal fade" tabindex="-1">
   <div class="modal-dialog">
-    <div style="padding: 30px;"  class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 class="modal-title">Add Process</h3>
-      </div>
-     
-
-
+    <div class="modal-content">
+      <div class="modal-body">
+       <center>
+        <h3>Add Step </h3>
         <form method="POST">
-        <div class="col-xs-13">
-            <center>
-           <!--  <div style="background-color: #fff; color:red; padding: 50px; text-align:center; font-size:100%;"> <?php echo $message; ?></div> -->
-              <label for="desc"><h4> Process Name</h4></label>
-           
-      <input class="form-control" type="text" name="processname" id="processname" value="<?php if(isset($_POST['processname'])){ echo htmlentities($_POST['processname']);}?>" required/></td>
-      
-
-
-<label><h4>Recurrence</h4></label>
-<div class="sample">
-<select id="fnivel"  name="recurrence" class="form-control">
-<option value="Null">Null</option>
-<option value="Monthly">Monthly</option>
-<option value="Yearly">Yearly</option>
-</select>
-
-<div id="fnivel2" hidden="hidden" pk="1">
-<label for="numrecurrence"><h4>Number of Recurrence</h4></label>
-<input class="form-control" type="number" name="numrecurrence" id="numrecurrence" value="<?php if(isset($_POST['numrecurrence'])){ echo htmlentities($_POST['numrecurrence']);}?>" min="1" max="10" />
-</div>
-
-<label for="agency"><h4>Agency</h4></label></td>
-<td><input class="form-control" type="text"  name="agency" id="agency" value="<?php if(isset($_POST['agency'])){ echo htmlentities($_POST['agency']);}?>"/></td>
-
-
-
-
-
-       
-        <div style="margin-top: 20px;">
-        <button type="submit" class="btn btn-fab btn-info mdi-navigation-check" name="add"  /> &nbsp;
-  &nbsp;
+  <br>
+  <label><h4> Steps: </h4></label>
+  <td><textarea class="form-control" name="steps" value="<?php if(isset($_POST['steps'])){ echo htmlentities($_POST['steps']);}?>" required></textarea>
   
-            <button class="btn btn-fab btn-danger mdi-navigation-close" data-dismiss="modal"></button>
-          </div>
-        </center>
-        
-        </div>
+    &nbsp;
+  <button class="btn btn-info btn-fab btn-raised mdi-action-done" type="submit" name="add"> </button>
+  
+  </table>
+  </form>
 
-
-
-</form>
-
-
-
-      <div class="modal-footer">
-      <!--   <button class="btn btn-danger" data-dismiss="modal">Dismiss</button> -->
       </div>
     </div>
   </div>
 </div>
+
+<!-- DataTables CSS -->
+
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.8/js/jquery.dataTables.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+ <script src="../js/bootstrap.min.js"></script>
+
+
+<script src="../js/jquery.min.js"></script> 
+<script type="text/javascript">
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"> </script>
+
+</body>
+</html>

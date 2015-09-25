@@ -31,7 +31,7 @@ else
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>User - ENDINMIND</title>
+    <title>List Requirements - ENDINMIND</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -84,14 +84,17 @@ else
 
 
 
-<br/>
-<!-------->
-<div class = "row">
-  <div class = "col-lg-12">
-  
+
+ <!-- Navigation Buttons -->
 
  
-<h3>REQUIREMENTS</h3>
+ &nbsp; <a href="liststeps.php?id=<?php echo $pid;?>" class="btn btn-default btn-fab btn-raised mdi-hardware-keyboard-backspace"></a>
+
+ <button class="btn btn-info btn-fab btn-raised mdi-content-add" data-toggle="modal" data-target="#simple-dialog"></button>
+<br><br>
+
+ 
+
 <a href="steprequirements.php?id=<?php echo $sid; ?>&pid=<?php echo $pid; ?>">ADD</a>
 <?php if($rec){?>
 <table border="1"; cellspacing="1px"; cellpadding="5px";>
@@ -109,10 +112,10 @@ else
 <?php }
 else
 {
-	echo "<div>No Requirements</div>";
+	echo "<div><center><h3>No Data</div>";
 }?>
   
-<a href="liststeps.php?id=<?php echo $pid;?>">Back</a>
+
   </div>
 </div>
 </div>
@@ -124,35 +127,46 @@ else
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="../js/jquery.js"></script>
+<div id="simple-dialog" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+       <center>
+        <h3>Add Requirements </h3>
+        <form method="POST">
+  <br>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../js/bootstrap.min.js"></script>
+  <a href="steprequirements.php?id=<?php echo $sid; ?>&pid=<?php echo $pid; ?>">ADD</a>
+<?php echo $sid; ?>&pid=<?php echo $pid; ?>
+    &nbsp;
+  <button class="btn btn-info btn-fab btn-raised mdi-action-done" type="submit" name="add"> </button>
+  
+  </table>
+  </form>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="../js/plugins/morris/raphael.min.js"></script>
-    <script src="../js/plugins/morris/morris.min.js"></script>
-    <script src="../js/plugins/morris/morris-data.js"></script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DataTables CSS -->
+
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.8/js/jquery.dataTables.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+ <script src="../js/bootstrap.min.js"></script>
+
+
 <script src="../js/jquery.min.js"></script> 
-<script>
-	function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-                $('#blah').attr('src', e.target.result);
-            }
-            
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    
-    $("#imgInp").change(function(){
-        readURL(this);
-    });
-</script>
+<script type="text/javascript">
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"> </script>
 
 </body>
-
 </html>
