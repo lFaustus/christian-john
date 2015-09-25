@@ -57,17 +57,16 @@ $no=0;
 <body>
    
 
-        <div id="page-wrapper">
-
+  
             
- <div style="padding:auto">
+ <div style="">
 
 
                 <div  class="panel panel-info">
     <div style="padding-bottom: 50px; text-align: center;" class="panel-heading">
-  <h3 style="padding-top: 30px; "class="panel-title mdi-action-assignment mdi-4x"><h2> List Agencies</h2></h3>
+  <h3 style="padding-top: 5px; "class="panel-title mdi-action-assignment mdi-4x"><h2> List Agencies</h2></h3>
     </div>
-    <div style="padding:10px;  padding-bottom: 50px;" class="panel-body">
+    <div style="padding:5px;  padding-bottom: 5px;" class="panel-body">
 
 <div style="text-align: center;">
   
