@@ -88,7 +88,7 @@ $no=0;
   <div style="padding: auto;">
   <div class="panel panel-info">
     <div class="panel-heading">
-        <h3 class="panel-title"><a href="agenlistprocess.php?aid=<?php echo $a['agencyid'];?>">
+        <h3 class="panel-title"><a href="mobile-agenlistprocess.php?aid=<?php echo $a['agencyid'];?>">
         <img class="img-circle" width="100px" height="100px" src="../agency/files/<?php echo $a['logo'];?>" /></h3>
     </div>
     <div class="panel-body">
